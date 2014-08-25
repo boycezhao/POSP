@@ -31,6 +31,11 @@ public class WorkerThreadPool {
 		return instance;
 	}
 
+    /**
+     *
+     * @param threadPoolSize
+     * @param queueSize
+     */
 	public void init(int threadPoolSize, int queueSize) {
 
         //executor = Executors.newFixedThreadPool(threadPoolSize);
