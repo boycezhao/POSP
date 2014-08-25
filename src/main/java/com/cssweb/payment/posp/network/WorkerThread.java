@@ -1,6 +1,7 @@
 package com.cssweb.payment.posp.network;
 
 
+import com.cssweb.payment.posp.TestNetwork;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,6 +10,8 @@ public class WorkerThread implements Runnable {
 	private static final Logger logger =  LogManager.getLogger(WorkerThread.class.getName());
 	private CustomMessage req;
 	private String response;
+
+    private TestNetwork testNetwork;
 	
 
 	public WorkerThread(CustomMessage req)
@@ -16,13 +19,13 @@ public class WorkerThread implements Runnable {
 		this.req = req;
 	}
 
-    public void testNetwork()
+    public void testNetwork(CustomMessage request)
     {
 
     }
 
 	public void run() {
-        CustomMessage response = null;
+        //CustomMessage response = null;
 
         // 解析消息内容
         if (!req.decodeMsgContent())
@@ -34,10 +37,10 @@ public class WorkerThread implements Runnable {
 
         if (msgType == "0820")
         {
-            testNetwork();
+            testNetwork.process(req);
         }
 
 
-        req.getChannelHandlerContext().writeAndFlush(response);
+        //req.getChannelHandlerContext().writeAndFlush(response);
 	}
 }
