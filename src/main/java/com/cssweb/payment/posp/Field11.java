@@ -1,4 +1,4 @@
-package com.cssweb.payment.pospclient;
+package com.cssweb.payment.posp;
 
 import java.util.Random;
 

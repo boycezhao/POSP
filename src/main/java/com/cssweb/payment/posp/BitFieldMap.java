@@ -1,6 +1,6 @@
-package com.cssweb.payment.pospclient;
+package com.cssweb.payment.posp;
 
-import com.cssweb.payment.pospclient.network.BitUtil;
+import com.cssweb.payment.posp.network.BitUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
