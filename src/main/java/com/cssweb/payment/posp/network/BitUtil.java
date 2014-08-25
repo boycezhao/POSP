@@ -1,10 +1,15 @@
-package com.cssweb.common;
+package com.cssweb.payment.posp.network;
 
 /**
  * Created by chenhf on 2014/7/21.
  */
 public class BitUtil {
 
+    /**
+     * 把8位二进制字符串转换成字节
+     * @param str
+     * @return
+     */
     public static byte binaryStrToByte(String str)
     {
         if (str.length()!= 8)
@@ -22,11 +27,16 @@ public class BitUtil {
             result = (byte) tmp;
         }
 
-        System.out.println("result = " + result);
+       // System.out.println("result = " + result);
         return result;
     }
 
-    public static byte[] byteToBitArray(byte b)
+    /**
+     * 把字节的每一位转换成二进制字节数组
+     * @param b
+     * @return
+     */
+    public static byte[] byteToBinaryArray(byte b)
     {
         byte[] array = new byte[8];
         for (int i = 7; i >= 0; i--) {
@@ -36,7 +46,12 @@ public class BitUtil {
         return array;
     }
 
-    public static String byteToBitStr(byte b)
+    /**
+     * 把字节的每一位转换成二进制字符串
+     * @param b
+     * @return
+     */
+    public static String byteToBinaryStr(byte b)
     {
         return ""
                 + (byte) ((b >> 7) & 0x1) + (byte) ((b >> 6) & 0x1)
@@ -47,15 +62,22 @@ public class BitUtil {
 
     public static void main(String[] args)
     {
-        BitUtil.binaryStrToByte("10000000");
-        BitUtil.binaryStrToByte("01000000");
+        BitUtil.binaryStrToByte("01111111");
+        BitUtil.binaryStrToByte("11000000");
 
-        String s = BitUtil.byteToBitStr((byte) 127);
+        String s = BitUtil.byteToBinaryStr((byte) 127);
         System.out.println("s = " + s);
 
-        byte[] bs = BitUtil.byteToBitArray((byte)129);
+        byte[] bs = BitUtil.byteToBinaryArray((byte) 127);
         for (byte i:bs) {
             System.out.println("bs = " + i);
         }
+
+        for (int i=0; i <128; i++) {
+
+            System.out.println("i/8=" + i/8 + ",  i%8=" + i%8);
+
+        }
+
     }
 }
