@@ -18,10 +18,13 @@ public class CustomMessage {
             .getLogger(CustomMessage.class.getName());
 
     private MsgHeader msgHeader;
-    private byte[] msgContent; // 包含MessageType, BitFieldMap, FieldData
+
+    private byte[] msgContent; // 包含MessageType, BitFieldMap, fieldData
 
     private MessageType msgType;
     private BitFieldMap bitFieldMap;
+    private byte[] fieldData;
+
     private HashMap<Integer, Field> fields = new HashMap<Integer, Field>();
 
     private AsynchronousSocketChannel channel;
@@ -76,6 +79,16 @@ public class CustomMessage {
         return msgType;
     }
 
+    public byte[] getFieldData()
+    {
+        return fieldData;
+    }
+
+    public BitFieldMap getBitFieldMap()
+    {
+        return bitFieldMap;
+    }
+
     public boolean decodeMsgContent()
     {
         int srcPos = 0;
@@ -103,11 +116,20 @@ public class CustomMessage {
             bitFieldMap.setExtBitFieldMap(extBitFieldMapByteArray);
         }
 
+        // 解析域数据
         char[] array = bitFieldMap.getArray();
+        int fieldNo = 0;
         for (int i=0; i<array.length; i++)
         {
+            fieldNo = i + 1;
+
             if (array[i] == '1')
             {
+                Field field = new Field();
+                field.setFieldNo(fieldNo);
+
+                fields.put(fieldNo, field);
+
 
             }
         }

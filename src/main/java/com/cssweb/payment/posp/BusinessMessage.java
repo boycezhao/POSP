@@ -5,7 +5,7 @@ import com.cssweb.payment.posp.network.CustomMessage;
 /**
  * Created by chenhf on 2014/8/25.
  */
-public interface POSBusiness {
+public interface BusinessMessage {
 
-    public void process(CustomMessage customMessage);
+    public boolean decode(CustomMessage customMessage);
 }

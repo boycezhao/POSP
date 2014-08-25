@@ -4,14 +4,14 @@ package com.cssweb.payment.posp;
  * Created by chenhf on 2014/7/21.
  */
 public class Field {
-    public static final int FIELD_LENGTH_TYPE_1 = 0; // 定长
-    public static final int FIELD_LENGTH_TYPE_2 = 2; // 变长2
-    public static final int FIELD_LENGTH_TYPE_3 = 3; // 变长3
+    public static final int FIELD_LENGTH_TYPE_FIXED = 0; // 定长
+    public static final int FIELD_LENGTH_TYPE_VAR2 = 2; // 变长2
+    public static final int FIELD_LENGTH_TYPE_VAR3 = 3; // 变长3
 
     protected String fieldName;
     protected int fieldNo;
-    protected String fieldValue;
-    protected int fieldLengthType = FIELD_LENGTH_TYPE_1;
+    protected byte[] fieldValue;
+    protected int fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
     protected int fieldLength;
 
 
@@ -34,10 +34,11 @@ public class Field {
 
 
 
-    public void setFieldValue(String fieldValue) {
 
-            this.fieldValue = fieldValue;
 
+    public void setFieldValue(byte[] fieldValue)
+    {
+        this.fieldValue = fieldValue;
     }
 
     public String getFieldName() {
@@ -58,11 +59,11 @@ public class Field {
 
     public byte[] getFieldValue()
     {
-        if (fieldLengthType == FIELD_LENGTH_TYPE_1)
+        if (fieldLengthType == FIELD_LENGTH_TYPE_FIXED)
         {
             return fieldValue.getBytes();
         }
-        else if (fieldLengthType == FIELD_LENGTH_TYPE_2)
+        else if (fieldLengthType == FIELD_LENGTH_TYPE_VAR2)
         {
             // 真实域内容长度
             int actualLen = fieldValue.length();
@@ -85,7 +86,7 @@ public class Field {
 
             return val;
         }
-        else if (fieldLengthType == FIELD_LENGTH_TYPE_3)
+        else if (fieldLengthType == FIELD_LENGTH_TYPE_VAR3)
         {
             // 真实域内容长度
             int actualLen = fieldValue.length();

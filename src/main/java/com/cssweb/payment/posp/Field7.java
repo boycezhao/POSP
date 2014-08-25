@@ -12,6 +12,8 @@ public class Field7 extends Field{
     public Field7()
     {
         fieldNo = 7;
+        fieldLength = 10;
+        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
     }
 
 
