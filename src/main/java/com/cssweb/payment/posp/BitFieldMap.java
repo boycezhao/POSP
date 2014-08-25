@@ -12,10 +12,10 @@ import java.util.List;
  */
 public class BitFieldMap {
 
+    public static final int BIT_FIELD_MAP_SIZE = 8;
 
-
-    private byte[] mainBitmap = new byte[8];
-    private byte[] extBitmap = new byte[8];
+    private byte[] mainBitmap = new byte[BIT_FIELD_MAP_SIZE];
+    private byte[] extBitmap = new byte[BIT_FIELD_MAP_SIZE];
 
     private List<Field> fields = new ArrayList<Field>();
 
@@ -33,6 +33,25 @@ public class BitFieldMap {
         }
     }
 
+    /**
+     * 返回
+     * @return
+     */
+    public char[] getArray()
+    {
+        return array;
+    }
+
+
+    public void setMainBitFieldMap(byte[] mainBitFieldMap)
+    {
+        mainBitmap = mainBitFieldMap;
+    }
+
+    public void setExtBitFieldMap(byte[] extBitFieldMap)
+    {
+        extBitmap = extBitFieldMap;
+    }
     /**
      * 添加域，并设置有效位
      * @param field

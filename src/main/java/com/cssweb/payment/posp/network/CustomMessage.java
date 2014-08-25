@@ -1,10 +1,14 @@
 package com.cssweb.payment.posp.network;
 
+import com.cssweb.payment.posp.BitFieldMap;
+import com.cssweb.payment.posp.Field;
+import com.cssweb.payment.posp.MessageType;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.nio.channels.AsynchronousSocketChannel;
+import java.util.HashMap;
 
 /**
  * Created by chenhf on 14-1-4.
@@ -14,7 +18,11 @@ public class CustomMessage {
             .getLogger(CustomMessage.class.getName());
 
     private MsgHeader msgHeader;
-    private byte[] msgContent;
+    private byte[] msgContent; // 包含MessageType, BitFieldMap, FieldData
+
+    private MessageType msgType;
+    private BitFieldMap bitFieldMap;
+    private HashMap<Integer, Field> fields = new HashMap<Integer, Field>();
 
     private AsynchronousSocketChannel channel;
     private ChannelHandlerContext channelHandlerContext;
@@ -53,29 +61,7 @@ public class CustomMessage {
 	}
 
 
-    /*
-    public void setMsgHeader(byte msgType, int functionNo, byte zip) {
-        msgHeader.setZip(zip);
-        msgHeader.setMsgType(msgType);
-        msgHeader.setFunctionNo(functionNo);
 
-        msgHeader.setMsgContentSize(msgContent.length);
-
-        msgHeader.setCrc(0);
-    }
-
-    public void setMsgHeader(byte[] msgHeader) throws IOException {
-
-        this.msgHeader.setMsgHeader(msgHeader);
-
-        msgContent = new byte[this.msgHeader.getMsgContentSize()];
-    }
-
-    public byte[] getMsgHeader() throws IOException {
-        return msgHeader.getMsgHeader();
-    }
-
-*/
 
     public void setMsgContent(byte[] msgContent) {
         this.msgContent = msgContent;
@@ -85,12 +71,47 @@ public class CustomMessage {
     }
 
 
-
-    /*
-    返回消息内容长度
-
-    public int getMsgContentSize()
+    public MessageType getMsgType()
     {
-        return msgHeader.getMsgContentSize();
-    }*/
+        return msgType;
+    }
+
+    public boolean decodeMsgContent()
+    {
+        int srcPos = 0;
+
+        // 读消息类型
+        byte[] msgTypeByteArray = new byte[MessageType.MSG_TYPE_SIZE];
+        System.arraycopy(msgContent, srcPos, msgTypeByteArray, 0, MessageType.MSG_TYPE_SIZE);
+        msgType.setMsgType(new String(msgTypeByteArray));
+        srcPos += MessageType.MSG_TYPE_SIZE;
+
+        // 读主位图
+        byte[] mainBitFieldMapByteArray = new byte[BitFieldMap.BIT_FIELD_MAP_SIZE];
+        System.arraycopy(msgContent, srcPos, mainBitFieldMapByteArray, 0, BitFieldMap.BIT_FIELD_MAP_SIZE);
+        srcPos += BitFieldMap.BIT_FIELD_MAP_SIZE;
+        bitFieldMap.setMainBitFieldMap(mainBitFieldMapByteArray);
+
+        // 把主位图第一个字节转成二进制数组
+        byte[] firstByteArray = BitUtil.byteToBinaryArray(mainBitFieldMapByteArray[0]);
+
+        if (firstByteArray[0] == 1)
+        {
+            byte[] extBitFieldMapByteArray = new byte[BitFieldMap.BIT_FIELD_MAP_SIZE];
+            System.arraycopy(msgContent, srcPos, extBitFieldMapByteArray, 0, BitFieldMap.BIT_FIELD_MAP_SIZE);
+            srcPos += BitFieldMap.BIT_FIELD_MAP_SIZE;
+            bitFieldMap.setExtBitFieldMap(extBitFieldMapByteArray);
+        }
+
+        char[] array = bitFieldMap.getArray();
+        for (int i=0; i<array.length; i++)
+        {
+            if (array[i] == '1')
+            {
+
+            }
+        }
+
+        return true;
+    }
 }

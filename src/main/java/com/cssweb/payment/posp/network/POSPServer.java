@@ -43,12 +43,6 @@ public class POSPServer {
 
     public static void main(String[] args) throws Exception {
 
-
-
-
-
-
-
         WorkerThreadPool.getInstance().init(10, 10000);
         
         new POSPServer(8080).run();
