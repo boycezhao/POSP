@@ -24,7 +24,9 @@ public class Field {
     }
 
     public int getFieldLength() {
-        return fieldLength;
+
+            return fieldLength;
+
     }
     public void setFieldLength(int fieldLength) {
         this.fieldLength = fieldLength;
