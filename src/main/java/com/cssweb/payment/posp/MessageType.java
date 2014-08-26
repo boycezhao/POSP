@@ -8,13 +8,30 @@ import java.nio.ByteBuffer;
 public class    MessageType {
     public static final int MSG_TYPE_SIZE = 4;
 
-    private String msgType;
+    private byte[] msgType;
 
-    public byte[] getMsgType() {
-        return msgType.getBytes();
+    /*
+    public String getMsgType() {
+        return msgType;
+    }
+    */
+
+    public byte[] getMsgType()
+    {
+        return msgType;
+    }
+
+    public int getMsgTypeLen()
+    {
+        if (msgType == null)
+            return 0;
+
+        return msgType.length;
     }
 
     public void setMsgType(String msgType) {
-        this.msgType = msgType;
+        // 必须是4字节长度
+
+        this.msgType = msgType.getBytes();
     }
 }

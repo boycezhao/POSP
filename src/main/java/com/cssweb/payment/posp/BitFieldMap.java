@@ -14,18 +14,19 @@ public class BitFieldMap {
 
     public static final int BIT_FIELD_MAP_SIZE = 8;
 
-    private byte[] mainBitmap = new byte[BIT_FIELD_MAP_SIZE];
-    private byte[] extBitmap = new byte[BIT_FIELD_MAP_SIZE];
+    private byte[] mainBitFieldMap = new byte[BIT_FIELD_MAP_SIZE];
+    private byte[] extBitFieldMap = new byte[BIT_FIELD_MAP_SIZE];
 
-    private List<Field> fields = new ArrayList<Field>();
-
+    private List<Field> fields;
+    private boolean isExtBitFieldMap;
+    private int bitFieldMapLen;
     private char[] array = new char[128];
-
-    private boolean extBitFieldMap = false;
 
 
     public BitFieldMap()
     {
+        isExtBitFieldMap = false;
+
         // 初始化
         for (int i=0; i<array.length; i++)
         {
@@ -43,38 +44,37 @@ public class BitFieldMap {
     }
 
 
-    public void setMainBitFieldMap(byte[] mainBitFieldMap)
-    {
-        mainBitmap = mainBitFieldMap;
+    public byte[] getExtBitFieldMap() {
+        return extBitFieldMap;
     }
 
-    public void setExtBitFieldMap(byte[] extBitFieldMap)
+    public int getExtBitFieldMapLen()
     {
-        extBitmap = extBitFieldMap;
+        return extBitFieldMap.length;
     }
-    /**
-     * 添加域，并设置有效位
-     * @param field
-     */
-    public void addField(Field field)
+
+    public void setExtBitFieldMap(byte[] extBitFieldMap) {
+        this.extBitFieldMap = extBitFieldMap;
+    }
+
+    public byte[] getMainBitFieldMap() {
+        return mainBitFieldMap;
+    }
+
+    public int getMainBitFieldMapLen()
     {
-        fields.add(field);
+        return mainBitFieldMap.length;
+    }
 
-        int fieldNo = field.getFieldNo();
-
-        array[fieldNo - 1] = '1'; // 置有效位
-
-        if (fieldNo > 64) {
-            array[0] = '1'; // 说明位图2有效
-            extBitFieldMap = true;
-        }
+    public void setMainBitFieldMap(byte[] mainBitFieldMap) {
+        this.mainBitFieldMap = mainBitFieldMap;
     }
 
     /**
      * 返回主位图
      * @return
      */
-    public byte[] getMainBitFieldMap()
+    public void setMainBitFieldMap()
     {
         String binaryStr = "";
         for (int i=0, j=1; i<64; i++, j++)
@@ -89,22 +89,20 @@ public class BitFieldMap {
                 byte b = BitUtil.binaryStrToByte(binaryStr);
 
                 int index = i/8;
-                mainBitmap[index] = b;
+                mainBitFieldMap[index] = b;
 
 
                 binaryStr = "";
                 j = 0;
             }
-        }
-
-        return mainBitmap;
+        }//end for
     }
 
     /**
      * 返回扩展位图
      * @return
      */
-    public byte[] getExtBitFieldMap()
+    public void setExtBitFieldMap()
     {
         String binaryStr = "";
         for (int i=64, j=1; i<128; i++, j++)
@@ -119,48 +117,60 @@ public class BitFieldMap {
                 byte b = BitUtil.binaryStrToByte(binaryStr);
 
                 int index = i/8;
-                extBitmap[index-8] = b;
+                extBitFieldMap[index-8] = b;
 
                 binaryStr = "";
                 j = 0;
             }
-        }
-
-        return extBitmap;
+        }//end for
     }
 
-    /**
-     * 返回添加的域的字节数组
-     * @return
-     */
-    public byte[] getData()
+
+    private void setFieldValid()
     {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-        // ByteBuffer
-
-        //StringBuffer sb = new StringBuffer();
         for (Field field : fields)
         {
-            byte[] fieldValue = field.getFieldValue();
-            try {
-                baos.write(fieldValue);
-            } catch (IOException e) {
-                e.printStackTrace();
+            int fieldNo = field.getFieldNo();
+
+            array[fieldNo - 1] = '1'; // 置有效位
+
+            if (fieldNo > 64) {
+                array[0] = '1'; // 说明位图2有效
+                isExtBitFieldMap = true;
             }
         }
+    }
 
 
-        return baos.toByteArray();
+    public void setFields(List<Field> fields)
+    {
+        this.fields = fields;
+
+        setFieldValid();
+
+
+
+        setMainBitFieldMap();
+        bitFieldMapLen = mainBitFieldMap.length;
+
+        if (isExtBitFieldMap) {
+            setExtBitFieldMap();
+            bitFieldMapLen += extBitFieldMap.length;
+        }
     }
 
     /**
      * 是否有扩展位图
      * @return
      */
-    public boolean hasExtBitFieldMap()
+    public boolean isExtBitFieldMap()
     {
-        return extBitFieldMap;
+        return isExtBitFieldMap;
+    }
+
+    public int getBitFieldMapLen()
+    {
+        return bitFieldMapLen;
     }
 
 }

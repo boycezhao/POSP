@@ -10,6 +10,6 @@ public class Field33 extends Field{
   public Field33()
   {
       fieldNo = 33;
-      fieldLengthType = Field.FIELD_LENGTH_TYPE_2;
+      fieldLengthType = Field.FIELD_LENGTH_TYPE_VAR2;
   }
 }

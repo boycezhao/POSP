@@ -29,16 +29,8 @@ public class MsgHeader {
     private byte userInfo;
     private byte[] rejectCode = new byte[5];
 
+    private byte[] msgHeader;
 
-    private int msgContentSize;
-
-    public int getMsgContentSize() {
-        return msgContentSize;
-    }
-
-    public void setMsgContentSize(int msgContentSize) {
-        this.msgContentSize = msgContentSize;
-    }
 
     public boolean decodeMsgHeader(byte[] msgHeader) throws IOException {
         ByteArrayInputStream bais = new ByteArrayInputStream(msgHeader);
@@ -63,19 +55,37 @@ public class MsgHeader {
         String sTotalLen = new String(totalLen);
         Integer len = Integer.parseInt(sTotalLen);
         len = len - MSG_HEADER_SIZE;
-        msgContentSize = len.intValue();
+        //msgContentSize = len.intValue();
 
         return true;
     }
 
-    public boolean encodeMsgHeader()
-    {
+    public boolean encodeMsgHeader(int totalLen, String destId, String srcId, byte batchNo, String tradeInfo, byte userInfo, String rejectCode) throws IOException {
+        setMsgHeaderLen((byte)46);
+        setVersion((byte)0b00000010);
+        setTotalLen(totalLen);
+        setDestId("00010000");
+        setSourceId("00010000");
+
+        byte[] reserved = new byte[3];
+        for (int i=0; i<reserved.length; i++)
+            reserved[i] = 0;
+        setReserved(reserved);
+
+        setBatchNo(batchNo);
+        setTradeInfo(tradeInfo); // 8字节定长
+        setUserInfo(userInfo);
+        setRejectCode(rejectCode); // 5字节定长
+
+        toByteArray();
+
         return true;
     }
 
 
-    public byte[] toByteArray() throws IOException {
+    private void toByteArray() throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
         baos.write(msgHeaderLen);
         baos.write(version);
         baos.write(totalLen);
@@ -87,9 +97,7 @@ public class MsgHeader {
         baos.write(userInfo);
         baos.write(rejectCode);
 
-
-
-        return baos.toByteArray();
+        msgHeader =  baos.toByteArray();
     }
 
 

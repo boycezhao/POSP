@@ -40,6 +40,7 @@ public class Field {
     {
         this.fieldValue = fieldValue;
     }
+    public void setFieldValue(String fieldValue) {this.fieldValue = fieldValue.getBytes(); }
 
     public String getFieldName() {
         return fieldName;

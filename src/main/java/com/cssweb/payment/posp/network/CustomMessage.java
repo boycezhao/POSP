@@ -2,13 +2,18 @@ package com.cssweb.payment.posp.network;
 
 import com.cssweb.payment.posp.BitFieldMap;
 import com.cssweb.payment.posp.Field;
+import com.cssweb.payment.posp.FieldData;
 import com.cssweb.payment.posp.MessageType;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.nio.channels.AsynchronousSocketChannel;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by chenhf on 14-1-4.
@@ -17,54 +22,42 @@ public class CustomMessage {
     private static final Logger logger = LogManager
             .getLogger(CustomMessage.class.getName());
 
+
+
     private MsgHeader msgHeader;
-
-    private byte[] msgContent; // 包含MessageType, BitFieldMap, fieldData
-
     private MessageType msgType;
     private BitFieldMap bitFieldMap;
-    private byte[] fieldData;
+    private FieldData fieldData;
+    private byte[] msgContent; // 包含MessageType, BitFieldMap, fieldData
 
-    private HashMap<Integer, Field> fields = new HashMap<Integer, Field>();
+
+
 
     private AsynchronousSocketChannel channel;
     private ChannelHandlerContext channelHandlerContext;
 
 
-    public MsgHeader getMsgHeader() {
-        return msgHeader;
-    }
-
-    public void setMsgHeader(MsgHeader msgHeader) {
-        this.msgHeader = msgHeader;
-    }
-// 只是为了测试aio demo
-    //private ByteBuffer msgHeaderBuf = ByteBuffer.allocate(MsgHeader.MSG_HEADER_SIZE);
-
-
-    
-
-
 	public ChannelHandlerContext getChannelHandlerContext() {
 		return channelHandlerContext;
 	}
-
 	public void setChannelHandlerContext(ChannelHandlerContext channelHandlerContext) {
 		this.channelHandlerContext = channelHandlerContext;
 	}
 
-
-
 	public AsynchronousSocketChannel getChannel() {
 		return channel;
 	}
-
 	public void setChannel(AsynchronousSocketChannel channel) {
 		this.channel = channel;
 	}
 
 
-
+    public MsgHeader getMsgHeader() {
+        return msgHeader;
+    }
+    public void setMsgHeader(MsgHeader msgHeader) {
+        this.msgHeader = msgHeader;
+    }
 
     public void setMsgContent(byte[] msgContent) {
         this.msgContent = msgContent;
@@ -78,16 +71,37 @@ public class CustomMessage {
     {
         return msgType;
     }
+    public void setMsgType(MessageType msgType)
+    {
+        this.msgType = msgType;
+    }
 
-    public byte[] getFieldData()
+
+    public FieldData getFieldData()
     {
         return fieldData;
+    }
+    /**
+     * 返回添加的域的字节数组
+     * @return
+     */
+    public void setFieldData(FieldData fieldData)
+    {
+        this.fieldData = fieldData;
     }
 
     public BitFieldMap getBitFieldMap()
     {
         return bitFieldMap;
     }
+    public void setBitFieldMap(BitFieldMap bitFieldMap)
+    {
+        this.bitFieldMap = bitFieldMap;
+    }
+
+
+
+
 
     public boolean decodeMsgContent()
     {
@@ -136,4 +150,39 @@ public class CustomMessage {
 
         return true;
     }
+
+    public int getTotalLen()
+    {
+        return 0;
+    }
+
+    /**
+     * 把
+     * @return
+     */
+    public boolean encode()
+    {
+        int msgContentLen = MessageType.MSG_TYPE_SIZE + bitFieldMap.getBitFieldMapLen() + fieldData.getFieldDataLen();
+
+        msgContent = new byte[msgContentLen];
+
+        int destPos = 0;
+
+        System.arraycopy(msgType.getMsgType(), 0, msgContent, destPos, msgType.getMsgTypeLen());
+        destPos += msgType.getMsgTypeLen();
+
+        System.arraycopy(bitFieldMap.getMainBitFieldMap(), 0, msgContent, destPos, bitFieldMap.getMainBitFieldMapLen());
+        destPos += bitFieldMap.getMainBitFieldMapLen();
+
+        if (bitFieldMap.isExtBitFieldMap()) {
+            System.arraycopy(bitFieldMap.getExtBitFieldMap(), 0, msgContent, destPos, bitFieldMap.getExtBitFieldMapLen());
+            destPos += bitFieldMap.getExtBitFieldMapLen();
+
+        }
+
+        System.arraycopy(fieldData.getFieldData(), 0, msgContent, destPos, fieldData.getFieldDataLen());
+
+        return true;
+    }
+
 }

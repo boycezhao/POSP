@@ -3,39 +3,100 @@ package com.cssweb.payment.posp;
 import com.cssweb.payment.posp.network.CustomMessage;
 import com.cssweb.payment.posp.network.MsgHeader;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
 /**
  * Created by chenhf on 2014/8/25.
  */
 public class TestNetwork implements BusinessAction {
 
-    private TestNetworkRequest request = new TestNetworkRequest();
-    private TestNetworkResponse response;
-
-
 
     @Override
     public void process(CustomMessage req) {
 
-        // 读取请求域的值
-        request.decode(req);
 
 
-        Field7 field7 = new Field7();
-        Field11 field11 = new Field11();
-        Field33 field33 = new Field33();
-        Field39 field39 = new Field39();
-        Field70 field70 = new Field70();
 
+        // 应答消息
+        CustomMessage response = new CustomMessage();
+        List<Field> fields = new ArrayList<Field>();
         MsgHeader msgHeader = new MsgHeader();
         MessageType msgType = new MessageType();
         BitFieldMap bitFieldMap = new BitFieldMap();
+        FieldData fieldData = new FieldData();
 
-        response.setMsgHeader(msgHeader);
-        response.setMessageType(msgType);
-        response.setBitMainMap(bitFieldMap);
-        response.setData();
+        // 设置域值
+        Field7 f7 = new Field7();
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("MMddHHmmss");
+        String tranTime = sdf.format(now);
+        f7.setFieldValue(tranTime);
 
-        // 发送应答结果
+        Field11 f11 = new Field11();
+        String traceNo = "";
+        Random random = new Random();
+        for (int i=0; i<6; i++) {
+            traceNo += random.nextInt(10);
+        }
+        f11.setFieldValue(traceNo);
+
+        Field33 f33 = new Field33();
+        f33.setFieldValue("111111");
+
+        Field39 f39 = new Field39();
+        f39.setFieldValue("00");
+
+        Field70 f70 = new Field70();
+        f70.setFieldValue("301"); // 线路测试
+
+
+        fields.add(f7);
+        fields.add(f11);
+        fields.add(f33);
+        fields.add(f39);
+        fields.add(f70);
+        // 设置域值结束
+
+
+        // 开始处理消息类型
+        msgType.setMsgType("0820");
+        response.setMsgType(msgType);
+        // 结束处理消息类型
+
+
+
+        // 设置位图
+        bitFieldMap.setFields(fields);
+        response.setBitFieldMap(bitFieldMap);
+
+
+        // 设置域值
+        try {
+            fieldData.setFields(fields);
+            response.setFieldData(fieldData);
+
+            // 设置消息头
+            int totalLen = MsgHeader.MSG_HEADER_SIZE + MessageType.MSG_TYPE_SIZE + bitFieldMap.getBitFieldMapLen() + fieldData.getFieldDataLen();
+            msgHeader.encodeMsgHeader(totalLen, "00010000", "00010000", (byte)0, "00000000", (byte)0, "00000");
+            response.setMsgHeader(msgHeader);
+
+            // 消息编码,这一步非常重要，把msgType, bitFieldMap, fieldData合成msgContent
+            response.encode();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        // 发送应答消息
         req.getChannelHandlerContext().writeAndFlush(response);
 
     }
