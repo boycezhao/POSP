@@ -77,7 +77,7 @@ public class BusiTestNetwork implements BusinessAction {
 
         // 设置域值
         try {
-            fieldData.setFields(fields);
+            fieldData.encode(fields);
             response.setFieldData(fieldData);
 
             // 设置消息头

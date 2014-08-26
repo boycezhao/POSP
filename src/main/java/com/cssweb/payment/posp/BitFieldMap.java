@@ -20,7 +20,7 @@ public class BitFieldMap {
     private List<Field> fields;
     private boolean isExtBitFieldMap;
     private int bitFieldMapLen;
-    private char[] array = new char[128];
+    private byte[] array = new byte[128];
 
 
     public BitFieldMap()
@@ -30,7 +30,7 @@ public class BitFieldMap {
         // 初始化
         for (int i=0; i<array.length; i++)
         {
-            array[i] = '0';
+            array[i] = 0;
         }
     }
 
@@ -38,22 +38,11 @@ public class BitFieldMap {
      * 返回
      * @return
      */
-    public char[] getArray()
+    public byte[] getArray()
     {
         return array;
     }
 
-
-    public byte[] getExtBitFieldMap() {
-        return extBitFieldMap;
-    }
-    public int getExtBitFieldMapLen()
-    {
-        return extBitFieldMap.length;
-    }
-    public void setExtBitFieldMap(byte[] extBitFieldMap) {
-        this.extBitFieldMap = extBitFieldMap;
-    }
 
     public byte[] getMainBitFieldMap() {
         return mainBitFieldMap;
@@ -64,7 +53,62 @@ public class BitFieldMap {
     }
     public void setMainBitFieldMap(byte[] mainBitFieldMap) {
         this.mainBitFieldMap = mainBitFieldMap;
+
+        // 把主位图第一个字节转成二进制数组
+        byte first = mainBitFieldMap[0];
+        byte[] firstByteArray = BitUtil.byteToBinaryArray(first);
+
+        if (firstByteArray[0] == 1)
+        {
+            isExtBitFieldMap = true;
+        }
+        else
+        {
+            isExtBitFieldMap = false;
+        }
+
+        int pos = 0;
+        for (int i=0; i<mainBitFieldMap.length; i++)
+        {
+            byte[] ba = BitUtil.byteToBinaryArray(mainBitFieldMap[i]);
+
+            for (int j=0; j<ba.length; j++)
+            {
+                byte b = ba[j];
+
+                array[pos++] = b;
+            }
+        }
+
+        bitFieldMapLen = mainBitFieldMap.length;
     }
+
+    public byte[] getExtBitFieldMap() {
+        return extBitFieldMap;
+    }
+    public int getExtBitFieldMapLen()
+    {
+        return extBitFieldMap.length;
+    }
+    public void setExtBitFieldMap(byte[] extBitFieldMap) {
+        this.extBitFieldMap = extBitFieldMap;
+
+        int pos = 64;
+        for (int i=0; i<extBitFieldMap.length; i++)
+        {
+            byte[] ba = BitUtil.byteToBinaryArray(extBitFieldMap[i]);
+
+            for (int j=0; j<ba.length; j++)
+            {
+                byte b = ba[j];
+
+                array[pos++] = b;
+            }
+        }
+
+        bitFieldMapLen += extBitFieldMap.length;
+    }
+
 
     /**
      * 返回主位图
@@ -128,10 +172,10 @@ public class BitFieldMap {
         {
             int fieldNo = field.getFieldNo();
 
-            array[fieldNo - 1] = '1'; // 置有效位
+            array[fieldNo - 1] = 1; // 置有效位
 
             if (fieldNo > 64) {
-                array[0] = '1'; // 说明位图2有效
+                array[0] = 1; // 说明位图2有效
                 isExtBitFieldMap = true;
             }
         }

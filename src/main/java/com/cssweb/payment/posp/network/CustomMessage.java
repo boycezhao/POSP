@@ -19,25 +19,17 @@ public class CustomMessage {
     private static final Logger logger = LogManager
             .getLogger(CustomMessage.class.getName());
 
-
-
     private MsgHeader msgHeader;
     private MessageType msgType;
     private BitFieldMap bitFieldMap;
     private FieldData fieldData;
     private byte[] msgContent; // 包含MessageType, BitFieldMap, fieldData
     private int msgContentSize;
-
-    public int getMsgContentSize() {
-        return msgContentSize;
-    }
-
-    public void setMsgContentSize(int msgContentSize) {
-        this.msgContentSize = msgContentSize;
-    }
-
     private AsynchronousSocketChannel channel;
     private ChannelHandlerContext channelHandlerContext;
+
+
+
 
 
 	public ChannelHandlerContext getChannelHandlerContext() {
@@ -69,6 +61,12 @@ public class CustomMessage {
         return msgContent;
     }
 
+    public int getMsgContentSize() {
+        return msgContentSize;
+    }
+    public void setMsgContentSize(int msgContentSize) {
+        this.msgContentSize = msgContentSize;
+    }
 
     public MessageType getMsgType()
     {
@@ -80,19 +78,6 @@ public class CustomMessage {
     }
 
 
-    public FieldData getFieldData()
-    {
-        return fieldData;
-    }
-    /**
-     * 返回添加的域的字节数组
-     * @return
-     */
-    public void setFieldData(FieldData fieldData)
-    {
-        this.fieldData = fieldData;
-    }
-
     public BitFieldMap getBitFieldMap()
     {
         return bitFieldMap;
@@ -103,63 +88,17 @@ public class CustomMessage {
     }
 
 
-
-
-
-    public boolean decodeMsgContent()
+    public FieldData getFieldData()
     {
-        int srcPos = 0;
-
-        // 读消息类型
-        byte[] msgTypeByteArray = new byte[MessageType.MSG_TYPE_SIZE];
-        System.arraycopy(msgContent, srcPos, msgTypeByteArray, 0, MessageType.MSG_TYPE_SIZE);
-        msgType.setMsgType(new String(msgTypeByteArray));
-        srcPos += MessageType.MSG_TYPE_SIZE;
-
-        // 读主位图
-        byte[] mainBitFieldMapByteArray = new byte[BitFieldMap.BIT_FIELD_MAP_SIZE];
-        System.arraycopy(msgContent, srcPos, mainBitFieldMapByteArray, 0, BitFieldMap.BIT_FIELD_MAP_SIZE);
-        srcPos += BitFieldMap.BIT_FIELD_MAP_SIZE;
-        bitFieldMap.setMainBitFieldMap(mainBitFieldMapByteArray);
-
-        // 把主位图第一个字节转成二进制数组
-        byte[] firstByteArray = BitUtil.byteToBinaryArray(mainBitFieldMapByteArray[0]);
-
-        if (firstByteArray[0] == 1)
-        {
-            byte[] extBitFieldMapByteArray = new byte[BitFieldMap.BIT_FIELD_MAP_SIZE];
-            System.arraycopy(msgContent, srcPos, extBitFieldMapByteArray, 0, BitFieldMap.BIT_FIELD_MAP_SIZE);
-            srcPos += BitFieldMap.BIT_FIELD_MAP_SIZE;
-            bitFieldMap.setExtBitFieldMap(extBitFieldMapByteArray);
-        }
-
-        // 解析域数据
-        char[] array = bitFieldMap.getArray();
-        int fieldNo = 0;
-        for (int i=0; i<array.length; i++)
-        {
-            fieldNo = i + 1;
-
-            if (array[i] == '1')
-            {
-                Field field = new Field();
-                field.setFieldNo(fieldNo);
-
-                fields.put(fieldNo, field);
-
-
-            }
-        }
-
-        return true;
+        return fieldData;
+    }
+    public void setFieldData(FieldData fieldData)
+    {
+        this.fieldData = fieldData;
     }
 
-    public int getTotalLen()
-    {
-        return 0;
-    }
 
-    /**
+     /**
      * 把
      * @return
      */
@@ -190,55 +129,48 @@ public class CustomMessage {
         return true;
     }
 
-    public boolean decode(CustomMessage customMessage)
+    public boolean decode()
     {
-
-        BitFieldMap bitFieldMap = customMessage.getBitFieldMap();
-
-        char[] array = bitFieldMap.getArray();
-        byte[] fieldData = customMessage.getFieldData();
         int srcPos = 0;
-        byte[] data = null;
-        int fieldLen = 0;
-        for (int i=0; i<array.length; i++)
+
+        // 读消息类型
+        msgType = new MessageType();
+        byte[] msgTypeByteArray = new byte[MessageType.MSG_TYPE_SIZE];
+        System.arraycopy(msgContent, srcPos, msgTypeByteArray, 0, MessageType.MSG_TYPE_SIZE);
+        msgType.setMsgType(new String(msgTypeByteArray));
+        srcPos += MessageType.MSG_TYPE_SIZE;
+
+        // 读主位图
+        bitFieldMap = new BitFieldMap();
+        byte[] mainBitFieldMapByteArray = new byte[BitFieldMap.BIT_FIELD_MAP_SIZE];
+        System.arraycopy(msgContent, srcPos, mainBitFieldMapByteArray, 0, BitFieldMap.BIT_FIELD_MAP_SIZE);
+        srcPos += BitFieldMap.BIT_FIELD_MAP_SIZE;
+        bitFieldMap.setMainBitFieldMap(mainBitFieldMapByteArray);
+
+        // 读扩展位图
+        if (bitFieldMap.isExtBitFieldMap())
         {
-            if (array[i] != '1') {
-                continue;
-            }
-
-            switch (i)
-            {
-                case 7:
-                    field7 = new Field7();
-                    fieldLen = field7.getFieldLength();
-                    data = new byte[fieldLen];
-                    break;
-
-                case 11:
-                    field11 = new Field11();
-                    fieldLen = field11.getFieldLength();
-                    data = new byte[fieldLen];
-                    break;
-            }
-
-            System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
-            srcPos += fieldLen;
+            byte[] extBitFieldMapByteArray = new byte[BitFieldMap.BIT_FIELD_MAP_SIZE];
+            System.arraycopy(msgContent, srcPos, extBitFieldMapByteArray, 0, BitFieldMap.BIT_FIELD_MAP_SIZE);
+            srcPos += BitFieldMap.BIT_FIELD_MAP_SIZE;
+            bitFieldMap.setExtBitFieldMap(extBitFieldMapByteArray);
         }
 
+        byte[] array = bitFieldMap.getArray();
+
+
+        // 解析域数据
+        fieldData = new FieldData();
+        byte[] data = new byte[msgHeader.getMsgContentSize() - MessageType.MSG_TYPE_SIZE - bitFieldMap.getBitFieldMapLen()];
+        System.arraycopy(msgContent, srcPos, data, 0, data.length);
+        fieldData.decode(array, data);
 
 
 
-        byte[] f7data = new byte[field7.getFieldLength()];
-
-        field7.setFieldValue(f7data);
-        srcPos += f7data.length;
-
-        byte[] f11data = new byte[field11.getFieldLength()];
-        System.arraycopy(fieldData, srcPos, f11data, 0, f11data.length);
-        field11.setFieldValue(f11data);
-        srcPos += f11data.length;
 
 
         return true;
     }
+
+
 }

@@ -27,7 +27,7 @@ public class WorkerThread implements Runnable {
         //CustomMessage response = null;
 
         // 解析消息内容
-        if (!request.decodeMsgContent())
+        if (!request.decode())
         {
             System.out.println("decodeMsgContent error");
         }
