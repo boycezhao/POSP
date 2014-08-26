@@ -1,7 +1,7 @@
 package com.cssweb.payment.posp.network;
 
 
-import com.cssweb.payment.posp.TestNetwork;
+import com.cssweb.payment.posp.BusiTestNetwork;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,7 +11,7 @@ public class WorkerThread implements Runnable {
 	private CustomMessage req;
 	private String response;
 
-    private TestNetwork testNetwork;
+    private BusiTestNetwork testNetwork;
 	
 
 	public WorkerThread(CustomMessage req)

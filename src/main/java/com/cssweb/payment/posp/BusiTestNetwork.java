@@ -13,7 +13,7 @@ import java.util.Random;
 /**
  * Created by chenhf on 2014/8/25.
  */
-public class TestNetwork implements BusinessAction {
+public class BusiTestNetwork implements BusinessAction {
 
 
     @Override
