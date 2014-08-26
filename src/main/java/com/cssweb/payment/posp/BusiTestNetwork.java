@@ -17,10 +17,11 @@ public class BusiTestNetwork implements BusinessAction {
 
 
     @Override
-    public void process(CustomMessage req) {
+    public void process(CustomMessage request) {
 
 
-
+        FieldData reqField = request.getFieldData();
+        Field7 reqF7 = (Field7) reqField.getField(7);
 
         // 应答消息
         CustomMessage response = new CustomMessage();
@@ -97,7 +98,7 @@ public class BusiTestNetwork implements BusinessAction {
 
 
         // 发送应答消息
-        req.getChannelHandlerContext().writeAndFlush(response);
+        request.getChannelHandlerContext().writeAndFlush(response);
 
     }
 }

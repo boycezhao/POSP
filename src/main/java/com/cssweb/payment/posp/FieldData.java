@@ -130,4 +130,10 @@ public class FieldData {
 
         fieldDataLen = fieldData.length;
     }
+
+    public Field getField(int fieldNo)
+    {
+
+        return fieldMap.get(fieldNo);
+    }
 }
