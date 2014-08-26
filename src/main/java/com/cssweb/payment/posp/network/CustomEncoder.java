@@ -34,7 +34,7 @@ public class CustomEncoder extends MessageToByteEncoder<CustomMessage> {
     	// 发送消息头
         //response.getMsgHeader().toBytes();
 
-    	out.writeBytes(customMessage.getMsgHeader().toByteArray());
+    	out.writeBytes(customMessage.getMsgHeader().getMsgHeader());
        
     	// 发送消息内容
 

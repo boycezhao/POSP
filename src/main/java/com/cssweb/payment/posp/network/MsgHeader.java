@@ -30,11 +30,38 @@ public class MsgHeader {
     private byte[] rejectCode = new byte[5];
 
     private byte[] msgHeader;
+    private int msgContentSize;
 
 
+    public byte[] getMsgHeader() {
+        return msgHeader;
+    }
+    public void setMsgHeader(byte[] msgHeader) {
+        this.msgHeader = msgHeader;
+    }
+
+    public byte getMsgHeaderLen() {
+
+        return msgHeaderLen;
+    }
+
+    public int getMsgContentSize() {
+        return msgContentSize;
+    }
+    public void setMsgContentSize(int msgContentSize) {
+        this.msgContentSize = msgContentSize;
+    }
+
+    /**
+     * 解码消息头
+     * @param msgHeader
+     * @return
+     * @throws IOException
+     */
     public boolean decodeMsgHeader(byte[] msgHeader) throws IOException {
         ByteArrayInputStream bais = new ByteArrayInputStream(msgHeader);
         DataInputStream in = new DataInputStream(bais);
+
 
         msgHeaderLen = in.readByte();
         version = in.readByte();
@@ -55,17 +82,29 @@ public class MsgHeader {
         String sTotalLen = new String(totalLen);
         Integer len = Integer.parseInt(sTotalLen);
         len = len - MSG_HEADER_SIZE;
-        //msgContentSize = len.intValue();
+        msgContentSize = len.intValue();
 
         return true;
     }
 
+    /**
+     * 编码消息头
+     * @param totalLen
+     * @param destId
+     * @param srcId
+     * @param batchNo
+     * @param tradeInfo
+     * @param userInfo
+     * @param rejectCode
+     * @return
+     * @throws IOException
+     */
     public boolean encodeMsgHeader(int totalLen, String destId, String srcId, byte batchNo, String tradeInfo, byte userInfo, String rejectCode) throws IOException {
         setMsgHeaderLen((byte)46);
         setVersion((byte)0b00000010);
         setTotalLen(totalLen);
-        setDestId("00010000");
-        setSourceId("00010000");
+        setDestId(destId);
+        setSourceId(srcId);
 
         byte[] reserved = new byte[3];
         for (int i=0; i<reserved.length; i++)
@@ -164,6 +203,7 @@ public class MsgHeader {
     {
         this.tradeInfo = tradeInfo.getBytes();
     }
+
     public void setUserInfo(byte userInfo)
     {
         this.userInfo = userInfo;

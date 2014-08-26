@@ -13,6 +13,7 @@ public class FieldData {
     private List<Field> fields;
     private int fieldDataLen;
 
+
     public FieldData()
     {
         fieldDataLen = 0;
@@ -21,23 +22,22 @@ public class FieldData {
     public byte[] getFieldData() {
         return fieldData;
     }
-
-    public int getFieldDataLen() {
-        return fieldDataLen;
-    }
-
-    public void setFieldDataLen(int fieldDataLen) {
-        this.fieldDataLen = fieldDataLen;
-    }
-
     public void setFieldData(byte[] fieldData) {
         this.fieldData = fieldData;
     }
 
+    public int getFieldDataLen() {
+        return fieldDataLen;
+    }
+    public void setFieldDataLen(int fieldDataLen) {
+        this.fieldDataLen = fieldDataLen;
+    }
+
+
+
     public List<Field> getFields() {
         return fields;
     }
-
     public void setFields(List<Field> fields) throws IOException {
         this.fields = fields;
 

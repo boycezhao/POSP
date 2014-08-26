@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<configuration>
+   <appenders>
+	    <Console name="console" target="SYSTEM_OUT">
+	    	
+	        <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %5p (%c:%L) - %m%n" />
+	        
+	    </Console>
+	    
+	   
+	    <File name="allLogFile" fileName="test.log" append="true">
+	        <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %5p (%c:%L) - %m%n" />
+		</File>
+		
+		 <RollingFile name="errorLogFile" fileName="test_error.log" append="true" filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+
+	        <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %5p (%c:%L) - %m%n" />
+	        <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+             <SizeBasedTriggeringPolicy size="500 MB" />
+         </RollingFile>
+		
+		
+		
+	</appenders>
+	
+	<loggers>
+	    <root level="INFO">
+	    	
+	        <appender-ref ref="console" />
+	        
+	        <appender-ref ref="allLogFile" />
+	        <appender-ref ref="errorLogFile"/>
+	         
+	    </root>
+    </loggers>
+</configuration>

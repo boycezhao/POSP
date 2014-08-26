@@ -19,7 +19,6 @@ public class Field {
     public int getFieldLengthType() {
         return fieldLengthType;
     }
-
     public void setFieldLengthType(int fieldLengthType) {
         this.fieldLengthType = fieldLengthType;
     }
@@ -27,25 +26,13 @@ public class Field {
     public int getFieldLength() {
         return fieldLength;
     }
-
     public void setFieldLength(int fieldLength) {
         this.fieldLength = fieldLength;
     }
 
-
-
-
-
-    public void setFieldValue(byte[] fieldValue)
-    {
-        this.fieldValue = fieldValue;
-    }
-    public void setFieldValue(String fieldValue) {this.fieldValue = fieldValue.getBytes(); }
-
     public String getFieldName() {
         return fieldName;
     }
-
     public void setFieldName(String fieldName) {
         this.fieldName = fieldName;
     }
@@ -53,44 +40,51 @@ public class Field {
     public int getFieldNo() {
         return fieldNo;
     }
-
     public void setFieldNo(int fieldNo) {
         this.fieldNo = fieldNo;
     }
 
+
+    public void setFieldValue(byte[] fieldValue)
+    {
+        this.fieldValue = fieldValue;
+    }
+    public void setFieldValue(String fieldValue) {this.fieldValue = fieldValue.getBytes(); }
     public byte[] getFieldValue()
     {
         if (fieldLengthType == FIELD_LENGTH_TYPE_FIXED)
         {
-            return fieldValue.getBytes();
+            return fieldValue;
         }
         else if (fieldLengthType == FIELD_LENGTH_TYPE_VAR2)
         {
             // 真实域内容长度
-            int actualLen = fieldValue.length();
+            int actualLen = fieldValue.length;
             String s = String.valueOf(actualLen);
             if (actualLen < 10)
             {
+                // 长度左边补0
                 s = "0" + s;
             }
 
 
             // 长度转成字符串，转成字节数组
-            byte[] varLen = s.getBytes();
+            byte[] varLen = s.getBytes(); // 例如："09"
 
-            // 域可变内容
-            byte[] actual = fieldValue.getBytes();
+
 
             byte[] val = new byte[2 + actualLen];
             System.arraycopy(varLen, 0, val, 0, varLen.length);
-            System.arraycopy(actual, 0, val, varLen.length, actual.length);
+            System.arraycopy(fieldValue, 0, val, varLen.length, fieldValue.length);
 
             return val;
         }
+        /*
         else if (fieldLengthType == FIELD_LENGTH_TYPE_VAR3)
         {
+
             // 真实域内容长度
-            int actualLen = fieldValue.length();
+            int actualLen = fieldValue.length;
             //if (actualLen > 2)
             {
                 //throw;
@@ -108,6 +102,7 @@ public class Field {
 
             return val;
         }
+        */
         else
         {
             return null;

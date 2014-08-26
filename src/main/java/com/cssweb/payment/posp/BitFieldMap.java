@@ -47,12 +47,10 @@ public class BitFieldMap {
     public byte[] getExtBitFieldMap() {
         return extBitFieldMap;
     }
-
     public int getExtBitFieldMapLen()
     {
         return extBitFieldMap.length;
     }
-
     public void setExtBitFieldMap(byte[] extBitFieldMap) {
         this.extBitFieldMap = extBitFieldMap;
     }
@@ -60,12 +58,10 @@ public class BitFieldMap {
     public byte[] getMainBitFieldMap() {
         return mainBitFieldMap;
     }
-
     public int getMainBitFieldMapLen()
     {
         return mainBitFieldMap.length;
     }
-
     public void setMainBitFieldMap(byte[] mainBitFieldMap) {
         this.mainBitFieldMap = mainBitFieldMap;
     }
@@ -74,7 +70,7 @@ public class BitFieldMap {
      * 返回主位图
      * @return
      */
-    public void setMainBitFieldMap()
+    private void setMainBitFieldMap()
     {
         String binaryStr = "";
         for (int i=0, j=1; i<64; i++, j++)
@@ -102,7 +98,7 @@ public class BitFieldMap {
      * 返回扩展位图
      * @return
      */
-    public void setExtBitFieldMap()
+    private void setExtBitFieldMap()
     {
         String binaryStr = "";
         for (int i=64, j=1; i<128; i++, j++)

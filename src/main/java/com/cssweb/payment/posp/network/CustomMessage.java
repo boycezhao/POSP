@@ -1,9 +1,6 @@
 package com.cssweb.payment.posp.network;
 
-import com.cssweb.payment.posp.BitFieldMap;
-import com.cssweb.payment.posp.Field;
-import com.cssweb.payment.posp.FieldData;
-import com.cssweb.payment.posp.MessageType;
+import com.cssweb.payment.posp.*;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,9 +26,15 @@ public class CustomMessage {
     private BitFieldMap bitFieldMap;
     private FieldData fieldData;
     private byte[] msgContent; // 包含MessageType, BitFieldMap, fieldData
+    private int msgContentSize;
 
+    public int getMsgContentSize() {
+        return msgContentSize;
+    }
 
-
+    public void setMsgContentSize(int msgContentSize) {
+        this.msgContentSize = msgContentSize;
+    }
 
     private AsynchronousSocketChannel channel;
     private ChannelHandlerContext channelHandlerContext;
@@ -182,7 +185,60 @@ public class CustomMessage {
 
         System.arraycopy(fieldData.getFieldData(), 0, msgContent, destPos, fieldData.getFieldDataLen());
 
+        msgContentSize = msgContent.length;
+
         return true;
     }
 
+    public boolean decode(CustomMessage customMessage)
+    {
+
+        BitFieldMap bitFieldMap = customMessage.getBitFieldMap();
+
+        char[] array = bitFieldMap.getArray();
+        byte[] fieldData = customMessage.getFieldData();
+        int srcPos = 0;
+        byte[] data = null;
+        int fieldLen = 0;
+        for (int i=0; i<array.length; i++)
+        {
+            if (array[i] != '1') {
+                continue;
+            }
+
+            switch (i)
+            {
+                case 7:
+                    field7 = new Field7();
+                    fieldLen = field7.getFieldLength();
+                    data = new byte[fieldLen];
+                    break;
+
+                case 11:
+                    field11 = new Field11();
+                    fieldLen = field11.getFieldLength();
+                    data = new byte[fieldLen];
+                    break;
+            }
+
+            System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
+            srcPos += fieldLen;
+        }
+
+
+
+
+        byte[] f7data = new byte[field7.getFieldLength()];
+
+        field7.setFieldValue(f7data);
+        srcPos += f7data.length;
+
+        byte[] f11data = new byte[field11.getFieldLength()];
+        System.arraycopy(fieldData, srcPos, f11data, 0, f11data.length);
+        field11.setFieldValue(f11data);
+        srcPos += f11data.length;
+
+
+        return true;
+    }
 }
