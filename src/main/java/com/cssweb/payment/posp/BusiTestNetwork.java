@@ -2,6 +2,8 @@ package com.cssweb.payment.posp;
 
 import com.cssweb.payment.posp.network.CustomMessage;
 import com.cssweb.payment.posp.network.MsgHeader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -14,7 +16,7 @@ import java.util.Random;
  * Created by chenhf on 2014/8/25.
  */
 public class BusiTestNetwork implements BusinessAction {
-
+    private static final Logger logger = LogManager.getLogger(BusiTestNetwork.class.getName());
 
     @Override
     public void process(CustomMessage request) {

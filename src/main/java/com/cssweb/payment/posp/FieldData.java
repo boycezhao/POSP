@@ -1,5 +1,8 @@
 package com.cssweb.payment.posp;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -9,10 +12,13 @@ import java.util.List;
  * Created by chenhf on 2014/8/26.
  */
 public class FieldData {
+    private static final Logger logger = LogManager.getLogger(FieldData.class.getName());
 
     private byte[] fieldData;
-    private List<Field> fields;
     private int fieldDataLen;
+
+    private List<Field> fields;
+
     private HashMap<Integer, Field> fieldMap = new HashMap<Integer, Field>();
 
 
@@ -27,6 +33,7 @@ public class FieldData {
     public void decode(byte[] array, byte[] fieldData) {
 
         this.fieldData = fieldData;
+        fieldDataLen = fieldData.length;
 
         // 分析域值
         int fieldNo = 0;
@@ -37,7 +44,7 @@ public class FieldData {
         {
             fieldNo = i + 1;
 
-            if (array[fieldNo] == 0) {
+            if (array[i] == 0) {
                 continue;
             }
 
@@ -93,23 +100,23 @@ public class FieldData {
                     fieldMap.put(fieldNo, f70);
                     break;
                 }
-            }
-        }
+                default:
+                    System.out.println("FieldData decode error.");
+            }//end switch
+        }//end for
     }
 
-    public int getFieldDataLen() {
-        return fieldDataLen;
+    public Field getField(int fieldNo)
+    {
+        return fieldMap.get(fieldNo);
     }
-    public void setFieldDataLen(int fieldDataLen) {
-        this.fieldDataLen = fieldDataLen;
-    }
+
 
 
 
     public List<Field> getFields() {
         return fields;
     }
-
     public void encode(List<Field> fields) throws IOException {
         this.fields = fields;
 
@@ -131,9 +138,10 @@ public class FieldData {
         fieldDataLen = fieldData.length;
     }
 
-    public Field getField(int fieldNo)
-    {
-
-        return fieldMap.get(fieldNo);
+    public int getFieldDataLen() {
+        return fieldDataLen;
+    }
+    public void setFieldDataLen(int fieldDataLen) {
+        this.fieldDataLen = fieldDataLen;
     }
 }

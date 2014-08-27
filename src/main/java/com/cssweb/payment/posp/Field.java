@@ -1,9 +1,14 @@
 package com.cssweb.payment.posp;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Created by chenhf on 2014/7/21.
  */
 public class Field {
+    private static final Logger logger = LogManager.getLogger(Field.class.getName());
+
     public static final int FIELD_LENGTH_TYPE_FIXED = 0; // 定长
     public static final int FIELD_LENGTH_TYPE_VAR2 = 2; // 变长2
     public static final int FIELD_LENGTH_TYPE_VAR3 = 3; // 变长3
@@ -24,9 +29,7 @@ public class Field {
     }
 
     public int getFieldLength() {
-
             return fieldLength;
-
     }
     public void setFieldLength(int fieldLength) {
         this.fieldLength = fieldLength;
