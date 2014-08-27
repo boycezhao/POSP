@@ -4,6 +4,9 @@ package com.cssweb.payment.posp.network;
  * Created by chenhf on 2014/8/22.
  */
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -13,7 +16,7 @@ import java.io.IOException;
  * Created by chenhf on 2014/7/21.
  */
 public class MsgHeader {
-
+    private static final Logger logger = LogManager.getLogger(MsgHeader.class.getName());
     // 总共46字节
 
     public static final int MSG_HEADER_SIZE = 46;

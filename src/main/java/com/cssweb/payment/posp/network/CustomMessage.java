@@ -16,8 +16,7 @@ import java.util.List;
  * Created by chenhf on 14-1-4.
  */
 public class CustomMessage {
-    private static final Logger logger = LogManager
-            .getLogger(CustomMessage.class.getName());
+    private static final Logger logger = LogManager.getLogger(CustomMessage.class.getName());
 
     private MsgHeader msgHeader;
     private MessageType msgType;
@@ -53,6 +52,7 @@ public class CustomMessage {
     public void setMsgHeader(MsgHeader msgHeader) {
         this.msgHeader = msgHeader;
     }
+
 
     public void setMsgContent(byte[] msgContent) {
         this.msgContent = msgContent;
@@ -137,7 +137,7 @@ public class CustomMessage {
         msgType = new MessageType();
         byte[] msgTypeByteArray = new byte[MessageType.MSG_TYPE_SIZE];
         System.arraycopy(msgContent, srcPos, msgTypeByteArray, 0, MessageType.MSG_TYPE_SIZE);
-        msgType.setMsgType(new String(msgTypeByteArray));
+        msgType.setMsgType(msgTypeByteArray);
         srcPos += MessageType.MSG_TYPE_SIZE;
 
         // 读主位图
@@ -164,10 +164,6 @@ public class CustomMessage {
         byte[] data = new byte[msgHeader.getMsgContentSize() - MessageType.MSG_TYPE_SIZE - bitFieldMap.getBitFieldMapLen()];
         System.arraycopy(msgContent, srcPos, data, 0, data.length);
         fieldData.decode(array, data);
-
-
-
-
 
         return true;
     }

@@ -1,6 +1,8 @@
 package com.cssweb.payment.posp;
 
 import com.cssweb.payment.posp.network.BitUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,7 +13,7 @@ import java.util.List;
  * Created by chenhf on 2014/8/20.
  */
 public class BitFieldMap {
-
+    private static final Logger logger = LogManager.getLogger(BitFieldMap.class.getName());
     public static final int BIT_FIELD_MAP_SIZE = 8;
 
     private byte[] mainBitFieldMap = new byte[BIT_FIELD_MAP_SIZE];
