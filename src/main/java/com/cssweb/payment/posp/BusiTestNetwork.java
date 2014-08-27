@@ -20,11 +20,11 @@ public class BusiTestNetwork implements BusinessAction {
 
     @Override
     public void process(CustomMessage request) {
-
+        logger.info("process...");
 
         FieldData reqField = request.getFieldData();
         Field7 reqF7 = (Field7) reqField.getField(7);
-        logger.debug("reqF7=" + new String(reqF7.getFieldValue()));
+        logger.info("reqF7=" + new String(reqF7.getFieldValue()));
 
         // 应答消息
         CustomMessage response = new CustomMessage();

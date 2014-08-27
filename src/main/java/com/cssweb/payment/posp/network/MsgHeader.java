@@ -86,6 +86,7 @@ public class MsgHeader {
         Integer len = Integer.parseInt(sTotalLen);
         len = len - MSG_HEADER_SIZE;
         msgContentSize = len.intValue();
+        logger.info("msgContentSize = " + msgContentSize);
 
         return true;
     }

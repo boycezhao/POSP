@@ -34,7 +34,9 @@ public class WorkerThread implements Runnable {
 
         String msgType = new String(request.getMsgType().getMsgType());
 
-        if (msgType == "0820")
+        logger.info("消息类型 = " + msgType);
+
+        if (msgType.equals("0820"))
         {
             testNetwork.process(request);
         }

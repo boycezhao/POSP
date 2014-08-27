@@ -139,6 +139,7 @@ public class CustomMessage {
         System.arraycopy(msgContent, srcPos, msgTypeByteArray, 0, MessageType.MSG_TYPE_SIZE);
         msgType.setMsgType(msgTypeByteArray);
         srcPos += MessageType.MSG_TYPE_SIZE;
+        logger.info("msgType = " + new String(msgType.getMsgType()));
 
         // 读主位图
         bitFieldMap = new BitFieldMap();
@@ -157,6 +158,7 @@ public class CustomMessage {
         }
 
         byte[] array = bitFieldMap.getArray();
+        logger.info("array = " + bitFieldMap.getArrayStr());
 
 
         // 解析域数据
@@ -164,6 +166,7 @@ public class CustomMessage {
         byte[] data = new byte[msgHeader.getMsgContentSize() - MessageType.MSG_TYPE_SIZE - bitFieldMap.getBitFieldMapLen()];
         System.arraycopy(msgContent, srcPos, data, 0, data.length);
         fieldData.decode(array, data);
+        logger.info("fieldData = " + new String(fieldData.getFieldData()));
 
         return true;
     }

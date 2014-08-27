@@ -54,6 +54,7 @@ public class FieldData {
                     fieldLen = f7.getFieldLength();
                     byte[] data = new byte[fieldLen];
                     System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
+                    f7.setFieldValue(data);
                     srcPos += fieldLen;
                     fieldMap.put(fieldNo, f7);
                     break;
@@ -63,6 +64,7 @@ public class FieldData {
                     fieldLen = f11.getFieldLength();
                     byte[] data = new byte[fieldLen];
                     System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
+                    f11.setFieldValue(data);
                     srcPos += fieldLen;
                     fieldMap.put(fieldNo, f11);
                     break;
@@ -77,6 +79,7 @@ public class FieldData {
                     fieldLen = Integer.parseInt(new String(varLen));
                     byte[] data = new byte[fieldLen];
                     System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
+                    f33.setFieldValue(data);
                     srcPos += fieldLen;
 
                     fieldMap.put(fieldNo, f33);
@@ -87,6 +90,7 @@ public class FieldData {
                     fieldLen = f39.getFieldLength();
                     byte[] data = new byte[fieldLen];
                     System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
+                    f39.setFieldValue(data);
                     srcPos += fieldLen;
                     fieldMap.put(fieldNo, f39);
                     break;
@@ -96,6 +100,7 @@ public class FieldData {
                     fieldLen = f70.getFieldLength();
                     byte[] data = new byte[fieldLen];
                     System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
+                    f70.setFieldValue(data);
                     srcPos += fieldLen;
                     fieldMap.put(fieldNo, f70);
                     break;
