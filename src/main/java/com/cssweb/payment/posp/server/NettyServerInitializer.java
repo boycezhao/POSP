@@ -15,6 +15,7 @@
  */
 package com.cssweb.payment.posp.server;
 
+import com.cssweb.payment.posp.client.POSPClient;
 import com.cssweb.payment.posp.network.CustomDecoder;
 import com.cssweb.payment.posp.network.CustomEncoder;
 import io.netty.channel.ChannelInitializer;
@@ -23,6 +24,14 @@ import io.netty.channel.socket.SocketChannel;
 
 
 public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
+
+    private POSPClient client;
+
+    public NettyServerInitializer(POSPClient client) {
+        this.client = client;
+    }
+
+
     @Override
     public void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
@@ -38,6 +47,6 @@ public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
         // and then business logic.
         // Please note we create a handler for every new channel
         // because it has stateful properties.
-        pipeline.addLast("handler", new NettyServerHandler());
+        pipeline.addLast("handler", new NettyServerHandler(client));
     }
 }

@@ -17,10 +17,16 @@ public class Main {
     {
         WorkerThreadPool.getInstance().init(10, 10000);
 
+        // 客户端线程
+        POSPClient client = new POSPClient("127.0.0.1", 2013);
+        Thread threadClient = new Thread(client);
+        threadClient.start();
+
+
         // 服务线程
-        POSPServer server = new POSPServer(3500);
-        Thread thread = new Thread(server);
-        thread.start();
+        POSPServer server = new POSPServer(3500, client);
+        Thread threadServer = new Thread(server);
+        threadServer.start();
 
         // 主线程
         try {
@@ -34,9 +40,11 @@ public class Main {
                     System.out.println("change key...");
 
                 }
-                else if(cmd.equalsIgnoreCase("exit"))
+                else if(cmd.equalsIgnoreCase("exit") || cmd.equalsIgnoreCase("quit"))
                 {
-                    server.stop();
+                    client.close();
+
+                    server.close();
 
                     System.exit(0);
                 }

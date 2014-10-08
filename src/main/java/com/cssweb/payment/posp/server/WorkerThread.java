@@ -3,6 +3,7 @@ package com.cssweb.payment.posp.server;
 
 import com.cssweb.payment.posp.business.BusiGetBalance;
 import com.cssweb.payment.posp.business.BusiTestNetwork;
+import com.cssweb.payment.posp.client.POSPClient;
 import com.cssweb.payment.posp.network.CustomMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,10 +17,13 @@ public class WorkerThread implements Runnable {
     private BusiTestNetwork testNetwork = new BusiTestNetwork();
     private BusiGetBalance getBalance = new BusiGetBalance();
 	
+    private POSPClient client;
 
-	public WorkerThread(CustomMessage req)
+	public WorkerThread(CustomMessage req, POSPClient client)
 	{
-		this.request = req;
+
+        this.request = req;
+        this.client = client;
 	}
 
 
@@ -49,5 +53,6 @@ public class WorkerThread implements Runnable {
 
 
         //req.getChannelHandlerContext().writeAndFlush(response);
+        client.sendResponse();
 	}
 }

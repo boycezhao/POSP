@@ -9,8 +9,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class WorkerThreadPool {
-	private static final Logger logger = LogManager
-			.getLogger(WorkerThreadPool.class.getName());
+	private static final Logger logger = LogManager.getLogger(WorkerThreadPool.class.getName());
 
 	private static WorkerThreadPool instance = null;
 	private static Object mutex = new Object();
