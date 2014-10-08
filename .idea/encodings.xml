@@ -5,12 +5,12 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/CustomEncoder.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/CustomMessage.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/MsgHeader.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/NettyServerHandler.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/NettyServerInitializer.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/POSPServer.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/Util.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/WorkerThread.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/WorkerThreadPool.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/server/NettyServerHandler.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/server/NettyServerInitializer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/server/POSPServer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/server/WorkerThread.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/server/WorkerThreadPool.java" charset="UTF-8" />
   </component>
 </project>
 

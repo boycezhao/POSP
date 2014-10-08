@@ -1,7 +1,6 @@
-package com.cssweb.payment.posp;
+package com.cssweb.payment.posp.business;
 
-import com.cssweb.payment.posp.network.CustomMessage;
-import com.cssweb.payment.posp.network.MsgHeader;
+import com.cssweb.payment.posp.network.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -68,7 +67,7 @@ public class BusiTestNetwork implements BusinessAction {
 
 
         // 开始处理消息类型
-        msgType.setMsgType("0820");
+        msgType.setMsgType("0830");
         response.setMsgType(msgType);
         // 结束处理消息类型
 
@@ -86,7 +85,7 @@ public class BusiTestNetwork implements BusinessAction {
 
             // 设置消息头
             int totalLen = MsgHeader.MSG_HEADER_SIZE + MessageType.MSG_TYPE_SIZE + bitFieldMap.getBitFieldMapLen() + fieldData.getFieldDataLen();
-            msgHeader.encodeMsgHeader(totalLen, "00010000", "00010000", (byte)0, "00000000", (byte)0, "00000");
+            msgHeader.encodeMsgHeader(totalLen, "48020000", "B0210029", (byte)0, "00000000", (byte)0, "00000");
             response.setMsgHeader(msgHeader);
 
             // 消息编码,这一步非常重要，把msgType, bitFieldMap, fieldData合成msgContent

@@ -1,9 +1,7 @@
-package com.cssweb.payment.posp;
+package com.cssweb.payment.posp.network;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.nio.ByteBuffer;
 
 /**
  * Created by chenhf on 2014/7/21.

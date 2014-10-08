@@ -1,4 +1,4 @@
-package com.cssweb.payment.posp;
+package com.cssweb.payment.posp.business;
 
 /**
  * Created by chenhf on 2014/8/20.

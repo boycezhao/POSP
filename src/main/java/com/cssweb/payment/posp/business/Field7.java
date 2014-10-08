@@ -1,7 +1,4 @@
-package com.cssweb.payment.posp;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+package com.cssweb.payment.posp.business;
 
 /**
  * Created by chenhf on 2014/8/20.

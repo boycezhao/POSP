@@ -1,5 +1,5 @@
 
-package com.cssweb.payment.posp.network;
+package com.cssweb.payment.posp.server;
 
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -13,9 +13,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-public class POSPServer {
+public class POSPServer implements Runnable{
     private static final Logger logger = LogManager
             .getLogger(POSPServer.class.getName());
+
+    EventLoopGroup bossGroup = new NioEventLoopGroup();
+    EventLoopGroup workerGroup = new NioEventLoopGroup();
+    ServerBootstrap b = new ServerBootstrap();
 
     private final int port;
 
@@ -23,11 +27,10 @@ public class POSPServer {
         this.port = port;
     }
 
-    public void run() throws Exception {
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+    public void run() {
+
         try {
-            ServerBootstrap b = new ServerBootstrap();
+
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 8192)
@@ -35,16 +38,16 @@ public class POSPServer {
              .childHandler(new NettyServerInitializer());
 
             b.bind(port).sync().channel().closeFuture().sync();
-        } finally {
-            bossGroup.shutdownGracefully();
-            workerGroup.shutdownGracefully();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) throws Exception {
-
-        WorkerThreadPool.getInstance().init(10, 10000);
-        
-        new POSPServer(8080).run();
+    public void stop()
+    {
+        bossGroup.shutdownGracefully();
+        workerGroup.shutdownGracefully();
     }
+
+
 }

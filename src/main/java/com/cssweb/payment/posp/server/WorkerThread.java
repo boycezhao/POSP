@@ -1,8 +1,9 @@
-package com.cssweb.payment.posp.network;
+package com.cssweb.payment.posp.server;
 
 
-import com.cssweb.payment.posp.BusiGetBalance;
-import com.cssweb.payment.posp.BusiTestNetwork;
+import com.cssweb.payment.posp.business.BusiGetBalance;
+import com.cssweb.payment.posp.business.BusiTestNetwork;
+import com.cssweb.payment.posp.network.CustomMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

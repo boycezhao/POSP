@@ -1,16 +1,10 @@
 package com.cssweb.payment.posp.network;
 
-import com.cssweb.payment.posp.*;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.nio.channels.AsynchronousSocketChannel;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by chenhf on 14-1-4.
@@ -21,9 +15,11 @@ public class CustomMessage {
     private MsgHeader msgHeader;
     private MessageType msgType;
     private BitFieldMap bitFieldMap;
+
     private FieldData fieldData;
     private byte[] msgContent; // 包含MessageType, BitFieldMap, fieldData
     private int msgContentSize;
+
     private AsynchronousSocketChannel channel;
     private ChannelHandlerContext channelHandlerContext;
 

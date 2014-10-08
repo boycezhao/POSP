@@ -13,8 +13,9 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package com.cssweb.payment.posp.network;
+package com.cssweb.payment.posp.server;
 
+import com.cssweb.payment.posp.network.CustomMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.apache.logging.log4j.LogManager;
@@ -26,6 +27,14 @@ public class NettyServerHandler extends
 
 	private static final Logger logger = LogManager
 			.getLogger(NettyServerHandler.class.getName());
+
+
+    @Override
+    public boolean acceptInboundMessage(java.lang.Object msg)
+    {
+        logger.info("========================================");
+        return true;
+    }
 
 	@Override
 	public void channelRead0(ChannelHandlerContext ctx, CustomMessage request)
