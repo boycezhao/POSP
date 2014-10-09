@@ -3,6 +3,7 @@ package com.cssweb.payment.posp.client;
 
 
 
+import com.cssweb.payment.posp.network.CustomMessage;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -136,11 +137,13 @@ public class POSPClient implements Runnable{
     }
 
 
-
-
-    public void sendResponse()
+    /**
+     * 发送应答消息
+     * @param response
+     */
+    public void sendResponse(CustomMessage response)
     {
-
+        handler.sendResponse(response);
     }
 
 /*

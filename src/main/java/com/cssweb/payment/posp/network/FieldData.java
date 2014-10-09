@@ -107,7 +107,7 @@ public class FieldData {
                     break;
                 }
                 default:
-                    System.out.println("FieldData decode error.");
+                    System.out.println("FieldData decode error.fieldNo=" + fieldNo);
             }//end switch
         }//end for
     }

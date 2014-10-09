@@ -7,5 +7,5 @@ import com.cssweb.payment.posp.network.CustomMessage;
  */
 public interface BusinessAction {
 
-    public void process(CustomMessage customMessage);
+    public CustomMessage process(CustomMessage customMessage);
 }

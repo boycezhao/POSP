@@ -41,7 +41,7 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<CustomMessag
 
     final BlockingQueue<CustomMessage> answer = new LinkedBlockingQueue<CustomMessage>();
 
-    public void sendRequest(CustomMessage customMessage) {
+    public void sendResponse(CustomMessage customMessage) {
 
         ChannelFuture future = null;
 

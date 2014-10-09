@@ -18,12 +18,14 @@ public class BusiTestNetwork implements BusinessAction {
     private static final Logger logger = LogManager.getLogger(BusiTestNetwork.class.getName());
 
     @Override
-    public void process(CustomMessage request) {
+    public CustomMessage process(CustomMessage request) {
         logger.info("process...");
 
+        // 处理请求消息
         FieldData reqField = request.getFieldData();
         Field7 reqF7 = (Field7) reqField.getField(7);
         logger.info("reqF7=" + new String(reqF7.getFieldValue()));
+
 
         // 应答消息
         CustomMessage response = new CustomMessage();
@@ -100,7 +102,8 @@ public class BusiTestNetwork implements BusinessAction {
 
 
         // 发送应答消息
-        request.getChannelHandlerContext().writeAndFlush(response);
+       // request.getChannelHandlerContext().writeAndFlush(response);
 
+        return response;
     }
 }
