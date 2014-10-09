@@ -15,8 +15,8 @@ public class CustomMessage {
     private MsgHeader msgHeader;
     private MessageType msgType;
     private BitFieldMap bitFieldMap;
-
     private FieldData fieldData;
+
     private byte[] msgContent; // 包含MessageType, BitFieldMap, fieldData
     private int msgContentSize;
 

@@ -2,7 +2,7 @@ package com.cssweb.payment.posp.main;
 
 import com.cssweb.payment.posp.client.POSPClient;
 import com.cssweb.payment.posp.server.POSPServer;
-import com.cssweb.payment.posp.server.WorkerThreadPool;
+import com.cssweb.payment.posp.business.WorkerThreadPool;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +15,7 @@ public class Main {
 
     public static void main(String[] args)
     {
+        // 业务处理线程池
         WorkerThreadPool.getInstance().init(10, 10000);
 
         // 客户端线程

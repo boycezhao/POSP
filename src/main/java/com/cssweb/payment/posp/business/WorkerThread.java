@@ -1,8 +1,6 @@
-package com.cssweb.payment.posp.server;
+package com.cssweb.payment.posp.business;
 
 
-import com.cssweb.payment.posp.business.BusiGetBalance;
-import com.cssweb.payment.posp.business.BusiTestNetwork;
 import com.cssweb.payment.posp.client.POSPClient;
 import com.cssweb.payment.posp.network.CustomMessage;
 import org.apache.logging.log4j.LogManager;
@@ -53,6 +51,7 @@ public class WorkerThread implements Runnable {
 
 
         //req.getChannelHandlerContext().writeAndFlush(response);
+        // 发送应答消息
         client.sendResponse(response);
 	}
 }

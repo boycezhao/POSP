@@ -17,8 +17,8 @@ import java.io.IOException;
  */
 public class MsgHeader {
     private static final Logger logger = LogManager.getLogger(MsgHeader.class.getName());
-    // 总共46字节
 
+    // 总共46字节
     public static final int MSG_HEADER_SIZE = 46;
 
     private byte msgHeaderLen;
@@ -36,24 +36,6 @@ public class MsgHeader {
     private int msgContentSize;
 
 
-    public byte[] getMsgHeader() {
-        return msgHeader;
-    }
-    public void setMsgHeader(byte[] msgHeader) {
-        this.msgHeader = msgHeader;
-    }
-
-    public byte getMsgHeaderLen() {
-
-        return msgHeaderLen;
-    }
-
-    public int getMsgContentSize() {
-        return msgContentSize;
-    }
-    public void setMsgContentSize(int msgContentSize) {
-        this.msgContentSize = msgContentSize;
-    }
 
     /**
      * 解码消息头
@@ -144,6 +126,25 @@ public class MsgHeader {
     }
 
 
+    public byte[] getMsgHeader() {
+        return msgHeader;
+    }
+    public void setMsgHeader(byte[] msgHeader) {
+        this.msgHeader = msgHeader;
+    }
+
+    public int getMsgContentSize() {
+        return msgContentSize;
+    }
+    public void setMsgContentSize(int msgContentSize) {
+        this.msgContentSize = msgContentSize;
+    }
+
+
+    public byte getMsgHeaderLen() {
+
+        return msgHeaderLen;
+    }
     public void setMsgHeaderLen(byte msgHeaderLen)
     {
         this.msgHeaderLen = msgHeaderLen;
@@ -161,6 +162,7 @@ public class MsgHeader {
 
         String str ="0000";
 
+        // 不足4位，前面补0
         String val  = str.substring(0, str.length() - s.length()) + s;
 
         this.totalLen = val.getBytes();

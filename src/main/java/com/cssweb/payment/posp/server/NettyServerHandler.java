@@ -15,6 +15,8 @@
  */
 package com.cssweb.payment.posp.server;
 
+import com.cssweb.payment.posp.business.WorkerThread;
+import com.cssweb.payment.posp.business.WorkerThreadPool;
 import com.cssweb.payment.posp.client.POSPClient;
 import com.cssweb.payment.posp.network.CustomMessage;
 import io.netty.channel.ChannelHandlerContext;

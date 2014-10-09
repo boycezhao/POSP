@@ -20,6 +20,7 @@ public class FieldData {
 
     private List<Field> fields;
 
+    // 存放解码后的域内容
     private HashMap<Integer, Field> fieldMap = new HashMap<Integer, Field>();
 
 
@@ -28,9 +29,7 @@ public class FieldData {
         fieldDataLen = 0;
     }
 
-    public byte[] getFieldData() {
-        return fieldData;
-    }
+
     public void decode(byte[] array, byte[] fieldData) {
 
         this.fieldData = fieldData;
@@ -45,11 +44,17 @@ public class FieldData {
         {
             fieldNo = i + 1;
 
+            // 位无效，即没有设置相应的域内容
             if (array[i] == 0) {
                 continue;
             }
 
             switch (fieldNo) {
+                case 1:
+                case 64:
+                {
+                    break;
+                }
                 case 7: {
                     Field7 f7 = new Field7();
                     fieldLen = f7.getFieldLength();
@@ -112,17 +117,8 @@ public class FieldData {
         }//end for
     }
 
-    public Field getField(int fieldNo)
-    {
-        return fieldMap.get(fieldNo);
-    }
 
 
-
-
-    public List<Field> getFields() {
-        return fields;
-    }
     public void encode(List<Field> fields) throws IOException {
         this.fields = fields;
 
@@ -142,6 +138,18 @@ public class FieldData {
         fieldData =  baos.toByteArray();
 
         fieldDataLen = fieldData.length;
+    }
+
+    public byte[] getFieldData() {
+        return fieldData;
+    }
+
+    public Field getField(int fieldNo)
+    {
+        return fieldMap.get(fieldNo);
+    }
+    public List<Field> getFields() {
+        return fields;
     }
 
     public int getFieldDataLen() {
