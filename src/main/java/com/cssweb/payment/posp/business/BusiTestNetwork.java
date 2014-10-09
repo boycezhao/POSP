@@ -29,13 +29,16 @@ public class BusiTestNetwork implements BusinessAction {
 
         // 应答消息
         CustomMessage response = new CustomMessage();
-        List<Field> fields = new ArrayList<Field>();
+
+
         MsgHeader msgHeader = new MsgHeader();
         MessageType msgType = new MessageType();
         BitFieldMap bitFieldMap = new BitFieldMap();
         FieldData fieldData = new FieldData();
 
         // 设置域值
+        List<Field> fields = new ArrayList<Field>();
+
         Field7 f7 = new Field7();
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("MMddHHmmss");
@@ -90,7 +93,7 @@ public class BusiTestNetwork implements BusinessAction {
             msgHeader.encodeMsgHeader(totalLen, "48020000", "B0210029", (byte)0, "00000000", (byte)0, "00000");
             response.setMsgHeader(msgHeader);
 
-            // 消息编码,这一步非常重要，把msgType, bitFieldMap, fieldData合成msgContent
+            // 消息编码,这一步非常重要，把msgHeader, msgType, bitFieldMap, fieldData合成msgContent
             response.encode();
 
 

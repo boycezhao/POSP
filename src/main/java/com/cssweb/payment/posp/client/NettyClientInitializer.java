@@ -21,9 +21,7 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 
-/**
- * Creates a newly configured {@link io.netty.channel.ChannelPipeline} for a client-side channel.
- */
+
 public class NettyClientInitializer extends ChannelInitializer<SocketChannel> {
 
 

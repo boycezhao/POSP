@@ -11,20 +11,20 @@ import java.nio.channels.AsynchronousSocketChannel;
  */
 public class CustomMessage {
     private static final Logger logger = LogManager.getLogger(CustomMessage.class.getName());
+    public static final int PKG_HEADER_SIZE = 4;
 
+    private byte[] pkgHeader = new byte[PKG_HEADER_SIZE];
+    private int pkgContentSize;
+
+    private byte[] pkgContent; // MsgHeader, MessageType, BitFieldMap, FieldData
     private MsgHeader msgHeader;
     private MessageType msgType;
     private BitFieldMap bitFieldMap;
     private FieldData fieldData;
 
-    private byte[] msgContent; // 包含MessageType, BitFieldMap, fieldData
-    private int msgContentSize;
 
     private AsynchronousSocketChannel channel;
     private ChannelHandlerContext channelHandlerContext;
-
-
-
 
 
 	public ChannelHandlerContext getChannelHandlerContext() {
@@ -42,26 +42,37 @@ public class CustomMessage {
 	}
 
 
+
+
+
+    public byte[] getPkgHeader() {
+        return pkgHeader;
+    }
+
+    public void setPkgHeader(byte[] pkgHeader) {
+        this.pkgHeader = pkgHeader;
+    }
+
+    public void setPkgContent(byte[] pkgContent) {
+        this.pkgContent = pkgContent;
+    }
+    public byte[] getPkgContent() {
+        return pkgContent;
+    }
+
+    public int getPkgContentSize() {
+        return pkgContentSize;
+    }
+    public void setPkgContentSize(int pkgContentSize) {
+        this.pkgContentSize = pkgContentSize;
+    }
+
+
     public MsgHeader getMsgHeader() {
         return msgHeader;
     }
     public void setMsgHeader(MsgHeader msgHeader) {
         this.msgHeader = msgHeader;
-    }
-
-
-    public void setMsgContent(byte[] msgContent) {
-        this.msgContent = msgContent;
-    }
-    public byte[] getMsgContent() {
-        return msgContent;
-    }
-
-    public int getMsgContentSize() {
-        return msgContentSize;
-    }
-    public void setMsgContentSize(int msgContentSize) {
-        this.msgContentSize = msgContentSize;
     }
 
     public MessageType getMsgType()
@@ -73,7 +84,6 @@ public class CustomMessage {
         this.msgType = msgType;
     }
 
-
     public BitFieldMap getBitFieldMap()
     {
         return bitFieldMap;
@@ -82,7 +92,6 @@ public class CustomMessage {
     {
         this.bitFieldMap = bitFieldMap;
     }
-
 
     public FieldData getFieldData()
     {
@@ -100,27 +109,36 @@ public class CustomMessage {
      */
     public boolean encode()
     {
-        int msgContentLen = MessageType.MSG_TYPE_SIZE + bitFieldMap.getBitFieldMapLen() + fieldData.getFieldDataLen();
+        int msgContentLen = MsgHeader.MSG_HEADER_SIZE + MessageType.MSG_TYPE_SIZE + bitFieldMap.getBitFieldMapLen() + fieldData.getFieldDataLen();
 
-        msgContent = new byte[msgContentLen];
+        pkgContent = new byte[msgContentLen];
 
         int destPos = 0;
 
-        System.arraycopy(msgType.getMsgType(), 0, msgContent, destPos, msgType.getMsgTypeLen());
+        // 消息头
+        System.arraycopy(msgHeader.getMsgHeader(), 0, pkgContent, destPos, msgHeader.getMsgHeaderLen());
+        destPos += msgHeader.getMsgHeaderLen();
+
+        // 消息类型
+        System.arraycopy(msgType.getMsgType(), 0, pkgContent, destPos, msgType.getMsgTypeLen());
         destPos += msgType.getMsgTypeLen();
 
-        System.arraycopy(bitFieldMap.getMainBitFieldMap(), 0, msgContent, destPos, bitFieldMap.getMainBitFieldMapLen());
+        // 位域映射
+        System.arraycopy(bitFieldMap.getMainBitFieldMap(), 0, pkgContent, destPos, bitFieldMap.getMainBitFieldMapLen());
         destPos += bitFieldMap.getMainBitFieldMapLen();
 
         if (bitFieldMap.isExtBitFieldMap()) {
-            System.arraycopy(bitFieldMap.getExtBitFieldMap(), 0, msgContent, destPos, bitFieldMap.getExtBitFieldMapLen());
+            System.arraycopy(bitFieldMap.getExtBitFieldMap(), 0, pkgContent, destPos, bitFieldMap.getExtBitFieldMapLen());
             destPos += bitFieldMap.getExtBitFieldMapLen();
 
         }
 
-        System.arraycopy(fieldData.getFieldData(), 0, msgContent, destPos, fieldData.getFieldDataLen());
+        // 域数据内容
+        System.arraycopy(fieldData.getFieldData(), 0, pkgContent, destPos, fieldData.getFieldDataLen());
 
-        msgContentSize = msgContent.length;
+        pkgContentSize = pkgContent.length;
+
+        pkgHeader = ByteArrayIntUtil.intToByteArray(pkgContentSize);
 
         return true;
     }
@@ -129,10 +147,17 @@ public class CustomMessage {
     {
         int srcPos = 0;
 
+        // 读消息头
+        msgHeader = new MsgHeader();
+        byte[] msgHeaderByteArray = new byte[MsgHeader.MSG_HEADER_SIZE];
+        System.arraycopy(pkgContent, srcPos, msgHeaderByteArray, 0, MsgHeader.MSG_HEADER_SIZE);
+        msgHeader.setMsgHeader(msgHeaderByteArray);
+        srcPos += MsgHeader.MSG_HEADER_SIZE;
+
         // 读消息类型
         msgType = new MessageType();
         byte[] msgTypeByteArray = new byte[MessageType.MSG_TYPE_SIZE];
-        System.arraycopy(msgContent, srcPos, msgTypeByteArray, 0, MessageType.MSG_TYPE_SIZE);
+        System.arraycopy(pkgContent, srcPos, msgTypeByteArray, 0, MessageType.MSG_TYPE_SIZE);
         msgType.setMsgType(msgTypeByteArray);
         srcPos += MessageType.MSG_TYPE_SIZE;
         logger.info("msgType = " + new String(msgType.getMsgType()));
@@ -140,7 +165,7 @@ public class CustomMessage {
         // 读主位图
         bitFieldMap = new BitFieldMap();
         byte[] mainBitFieldMapByteArray = new byte[BitFieldMap.BIT_FIELD_MAP_SIZE];
-        System.arraycopy(msgContent, srcPos, mainBitFieldMapByteArray, 0, BitFieldMap.BIT_FIELD_MAP_SIZE);
+        System.arraycopy(pkgContent, srcPos, mainBitFieldMapByteArray, 0, BitFieldMap.BIT_FIELD_MAP_SIZE);
         srcPos += BitFieldMap.BIT_FIELD_MAP_SIZE;
         bitFieldMap.setMainBitFieldMap(mainBitFieldMapByteArray);
 
@@ -148,7 +173,7 @@ public class CustomMessage {
         if (bitFieldMap.isExtBitFieldMap())
         {
             byte[] extBitFieldMapByteArray = new byte[BitFieldMap.BIT_FIELD_MAP_SIZE];
-            System.arraycopy(msgContent, srcPos, extBitFieldMapByteArray, 0, BitFieldMap.BIT_FIELD_MAP_SIZE);
+            System.arraycopy(pkgContent, srcPos, extBitFieldMapByteArray, 0, BitFieldMap.BIT_FIELD_MAP_SIZE);
             srcPos += BitFieldMap.BIT_FIELD_MAP_SIZE;
             bitFieldMap.setExtBitFieldMap(extBitFieldMapByteArray);
         }
@@ -160,7 +185,7 @@ public class CustomMessage {
         // 解析域数据
         fieldData = new FieldData();
         byte[] data = new byte[msgHeader.getMsgContentSize() - MessageType.MSG_TYPE_SIZE - bitFieldMap.getBitFieldMapLen()];
-        System.arraycopy(msgContent, srcPos, data, 0, data.length);
+        System.arraycopy(pkgContent, srcPos, data, 0, data.length);
         fieldData.decode(array, data);
         logger.info("fieldData = " + new String(fieldData.getFieldData()));
 

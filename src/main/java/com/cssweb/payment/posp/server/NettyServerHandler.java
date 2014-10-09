@@ -25,8 +25,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-public class NettyServerHandler extends
-		SimpleChannelInboundHandler<CustomMessage> {
+public class NettyServerHandler extends		SimpleChannelInboundHandler<CustomMessage> {
 
     private static final Logger logger = LogManager.getLogger(NettyServerHandler.class.getName());
 
@@ -38,16 +37,10 @@ public class NettyServerHandler extends
         this.client = client;
     }
 
-    @Override
-    public boolean acceptInboundMessage(java.lang.Object msg)
-    {
-        logger.info("========================================");
-        return true;
-    }
+
 
 	@Override
-	public void channelRead0(ChannelHandlerContext ctx, CustomMessage request)
-			throws Exception {
+	public void channelRead0(ChannelHandlerContext ctx, CustomMessage request)			throws Exception {
 		logger.info("channelRead0");
 
 		request.setChannelHandlerContext(ctx);
@@ -65,8 +58,7 @@ public class NettyServerHandler extends
 	}
 
 	@Override
-	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
-			throws Exception {
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)			throws Exception {
 		logger.error("exceptionCaught", cause);
 		ctx.close();
 	}

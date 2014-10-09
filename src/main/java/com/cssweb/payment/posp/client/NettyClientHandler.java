@@ -26,13 +26,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-/**
- * Handler for a client-side channel.  This handler maintains stateful
- * information which is specific to a certain channel using member variables.
- * Therefore, an instance of this handler can cover only one channel.  You have
- * to create a new handler instance whenever you create a new channel and insert
- * this handler to avoid a race condition.
- */
+
 public class NettyClientHandler extends SimpleChannelInboundHandler<CustomMessage> {
     private static final Logger logger = LogManager.getLogger(NettyClientHandler.class.getName());
 
@@ -61,7 +55,7 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<CustomMessag
         @Override
         public void operationComplete(ChannelFuture future) throws Exception {
             if (future.isSuccess()) {
-                System.out.println("send is success....");
+                logger.info("发送应答消息成功");
             } else {
                 future.cause().printStackTrace();
                 future.channel().close();
