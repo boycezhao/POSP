@@ -34,6 +34,7 @@ public class POSPServer implements Runnable{
 
         try {
             ServerBootstrap b = new ServerBootstrap();
+
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class)
              .option(ChannelOption.SO_BACKLOG, 8192)
@@ -41,6 +42,7 @@ public class POSPServer implements Runnable{
              .childHandler(new NettyServerInitializer(client));
 
             b.bind(port).sync().channel().closeFuture().sync();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

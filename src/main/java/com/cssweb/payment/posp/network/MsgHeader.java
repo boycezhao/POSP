@@ -43,34 +43,41 @@ public class MsgHeader {
      * @return
      * @throws IOException
      */
-    public boolean decodeMsgHeader(byte[] msgHeader) throws IOException {
+    public boolean decode(byte[] msgHeader)  {
+        try {
         ByteArrayInputStream bais = new ByteArrayInputStream(msgHeader);
         DataInputStream in = new DataInputStream(bais);
 
 
-        msgHeaderLen = in.readByte();
-        version = in.readByte();
-        in.readFully(totalLen);
-        in.readFully(destId);
-        in.readFully(srcId);
-        in.readFully(reserved);
-        batchNo = in.readByte();
-        in.readFully(tradeInfo);
-        userInfo = in.readByte();
-        in.readFully(rejectCode);
 
-        in.close();
-        bais.close();
+            msgHeaderLen = in.readByte();
+            version = in.readByte();
+            in.readFully(totalLen);
+            in.readFully(destId);
+            in.readFully(srcId);
+            in.readFully(reserved);
+            batchNo = in.readByte();
+            in.readFully(tradeInfo);
+            userInfo = in.readByte();
+            in.readFully(rejectCode);
+
+            in.close();
+            bais.close();
 
 
-        // 计算消息内容大小
-        String sTotalLen = new String(totalLen);
-        Integer len = Integer.parseInt(sTotalLen);
-        len = len - MSG_HEADER_SIZE;
-        msgContentSize = len.intValue();
-        logger.info("msgContentSize = " + msgContentSize);
+            // 计算消息内容大小
+            String sTotalLen = new String(totalLen);
+            Integer len = Integer.parseInt(sTotalLen);
+            len = len - MSG_HEADER_SIZE;
+            msgContentSize = len.intValue();
+            logger.info("msgContentSize = " + msgContentSize);
 
-        return true;
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     /**
@@ -85,7 +92,7 @@ public class MsgHeader {
      * @return
      * @throws IOException
      */
-    public boolean encodeMsgHeader(int totalLen, String destId, String srcId, byte batchNo, String tradeInfo, byte userInfo, String rejectCode) throws IOException {
+    public boolean encode(int totalLen, String destId, String srcId, byte batchNo, String tradeInfo, byte userInfo, String rejectCode) throws IOException {
         setMsgHeaderLen((byte)46);
         setVersion((byte)0b00000010);
         setTotalLen(totalLen);

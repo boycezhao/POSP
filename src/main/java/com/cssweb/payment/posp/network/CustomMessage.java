@@ -138,7 +138,7 @@ public class CustomMessage {
 
         pkgContentSize = pkgContent.length;
 
-        pkgHeader = ByteArrayIntUtil.intToByteArray(pkgContentSize);
+        pkgHeader = ByteArrayIntUtil.intToByteArrayH(pkgContentSize);
 
         return true;
     }
@@ -151,7 +151,7 @@ public class CustomMessage {
         msgHeader = new MsgHeader();
         byte[] msgHeaderByteArray = new byte[MsgHeader.MSG_HEADER_SIZE];
         System.arraycopy(pkgContent, srcPos, msgHeaderByteArray, 0, MsgHeader.MSG_HEADER_SIZE);
-        msgHeader.setMsgHeader(msgHeaderByteArray);
+        msgHeader.decode(msgHeaderByteArray);
         srcPos += MsgHeader.MSG_HEADER_SIZE;
 
         // 读消息类型

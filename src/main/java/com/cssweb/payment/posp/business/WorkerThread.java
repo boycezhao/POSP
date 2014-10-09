@@ -32,7 +32,7 @@ public class WorkerThread implements Runnable {
         // 解析消息内容
         if (!request.decode())
         {
-            System.out.println("decodeMsgContent error");
+            logger.error("decodeMsgContent error");
         }
 
         String msgType = new String(request.getMsgType().getMsgType());

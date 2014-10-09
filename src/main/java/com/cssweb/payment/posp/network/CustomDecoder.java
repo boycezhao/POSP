@@ -28,12 +28,9 @@ public class CustomDecoder extends ByteToMessageDecoder {
         
         // 读消息头
         byte[] pkgHeader = new byte[CustomMessage.PKG_HEADER_SIZE];
-
         in.readBytes(pkgHeader);
-
-
-
-        int pkgContentSize = Integer.parseInt(new String(pkgHeader));
+        int pkgContentSize = ByteArrayIntUtil.byteArrayToIntH(pkgHeader);
+        logger.info("消息内容大小" + pkgContentSize);
 
 
         // 等待只到消息内容接收完成

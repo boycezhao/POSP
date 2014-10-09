@@ -73,27 +73,32 @@ public class BusiTestNetwork implements BusinessAction {
 
         // 开始处理消息类型
         msgType.setMsgType("0830");
-        response.setMsgType(msgType);
+
         // 结束处理消息类型
 
 
 
         // 设置位图
         bitFieldMap.setFields(fields);
-        response.setBitFieldMap(bitFieldMap);
+
 
 
         // 设置域值
         try {
             fieldData.encode(fields);
-            response.setFieldData(fieldData);
+
 
             // 设置消息头
             int totalLen = MsgHeader.MSG_HEADER_SIZE + MessageType.MSG_TYPE_SIZE + bitFieldMap.getBitFieldMapLen() + fieldData.getFieldDataLen();
-            msgHeader.encodeMsgHeader(totalLen, "48020000", "B0210029", (byte)0, "00000000", (byte)0, "00000");
-            response.setMsgHeader(msgHeader);
+            msgHeader.encode(totalLen, "48020000", "B0210029", (byte)0, "00000000", (byte)0, "00000");
+
 
             // 消息编码,这一步非常重要，把msgHeader, msgType, bitFieldMap, fieldData合成msgContent
+            response.setMsgHeader(msgHeader);
+            response.setMsgType(msgType);
+            response.setBitFieldMap(bitFieldMap);
+            response.setFieldData(fieldData);
+
             response.encode();
 
 
