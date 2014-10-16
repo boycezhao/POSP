@@ -14,8 +14,8 @@ import java.util.Random;
 /**
  * Created by chenhf on 2014/8/25.
  */
-public class BusiTestNetwork implements BusinessAction {
-    private static final Logger logger = LogManager.getLogger(BusiTestNetwork.class.getName());
+public class BusiEchoTest implements BusinessAction {
+    private static final Logger logger = LogManager.getLogger(BusiEchoTest.class.getName());
 
     @Override
     public CustomMessage process(CustomMessage request) {

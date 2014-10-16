@@ -13,7 +13,7 @@ public class WorkerThread implements Runnable {
     private POSPClient client;
 
 	private CustomMessage request;
-    private BusiTestNetwork testNetwork = new BusiTestNetwork();
+    private BusiEchoTest testNetwork = new BusiEchoTest();
     private BusiGetBalance getBalance = new BusiGetBalance();
 	
 
