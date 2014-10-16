@@ -9,6 +9,8 @@ public class Field33 extends Field{
 
   public Field33()
   {
+      fieldName = "发送机构标识码";
+
       fieldNo = 33;
       fieldLengthType = FIELD_LENGTH_TYPE_VAR2;
   }

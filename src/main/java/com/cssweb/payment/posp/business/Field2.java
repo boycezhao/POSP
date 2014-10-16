@@ -5,7 +5,11 @@ package com.cssweb.payment.posp.business;
  */
 public class Field2 extends Field{
 
-
+    public Field2()
+    {
+        fieldName = "主账号";
+        fieldNo = 2;
+    }
 
 
 }

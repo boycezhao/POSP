@@ -15,10 +15,12 @@ public class Field {
 
     protected String fieldName;
     protected int fieldNo;
-    protected byte[] fieldValue;
+
     protected int fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
     protected int fieldLength;
+    protected int fieldType;
 
+    protected byte[] fieldValue;
 
 
     public int getFieldLengthType() {
