@@ -8,18 +8,25 @@ import org.apache.logging.log4j.Logger;
  */
 public class Field {
     private static final Logger logger = LogManager.getLogger(Field.class.getName());
+    // 域描述
+    protected String fieldName;
 
+    // 域编号
+    protected int fieldNo;
+
+    // 数据类型
+    protected int fieldType;
+
+    // 长度类型
     public static final int FIELD_LENGTH_TYPE_FIXED = 0; // 定长
     public static final int FIELD_LENGTH_TYPE_VAR2 = 2; // 变长2
     public static final int FIELD_LENGTH_TYPE_VAR3 = 3; // 变长3
-
-    protected String fieldName;
-    protected int fieldNo;
-
     protected int fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-    protected int fieldLength;
-    protected int fieldType;
 
+    // 长度
+    protected int fieldLength;
+
+    // 域值
     protected byte[] fieldValue;
 
 

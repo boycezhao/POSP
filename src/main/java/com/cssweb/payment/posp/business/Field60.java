@@ -9,5 +9,8 @@ public class Field60  extends Field{
     {
         fieldName = "自定义域";
         fieldNo = 60;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_VAR3;
+        fieldLength = 100;
     }
 }
