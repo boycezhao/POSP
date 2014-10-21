@@ -3,6 +3,9 @@ package com.cssweb.payment.posp.business;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by chenhf on 2014/7/21.
  */
@@ -15,7 +18,13 @@ public class Field {
     protected int fieldNo;
 
     // 数据类型
-    protected int fieldType;
+    protected String fieldType;
+    public static final String FIELD_TYPE_BINARY_BIT = "b";
+    public static final String FIELD_TYPE_BINARY_BYTE = "B";
+    public static final String FIELD_TYPE_ANS = "ans";
+    public static final String FIELD_TYPE_N = "n";
+    public static final String FIELD_TYPE_Z = "Z";
+    public static final String FIELD_TYPE_AN = "an";
 
     // 长度类型
     public static final int FIELD_LENGTH_TYPE_FIXED = 0; // 定长
@@ -23,11 +32,26 @@ public class Field {
     public static final int FIELD_LENGTH_TYPE_VAR3 = 3; // 变长3
     protected int fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
 
+
     // 长度
     protected int fieldLength;
+    protected int maxFieldLength; // 最大长度
 
     // 域值
     protected byte[] fieldValue;
+
+    // 子域相关处理
+    protected boolean isSubField = false; // 是否是子域
+    protected boolean hasSubField = false; // 是否有子域
+    protected List<Field> subFields = new ArrayList<Field>();
+    public void addField(Field subField)
+    {
+        subFields.add(subField);
+        hasSubField = true;
+    }
+    protected int beginPos = 0; // 相对于父域的开始位置
+
+
 
 
     public int getFieldLengthType() {

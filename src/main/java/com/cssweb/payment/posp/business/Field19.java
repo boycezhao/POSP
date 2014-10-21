@@ -7,7 +7,13 @@ public class Field19 extends Field{
 
     public Field19()
     {
+        // 参见世界各国和地区名称代码（GB/T 2659-94）
         fieldName = "商户国家代码";
         fieldNo = 19;
+
+        fieldType = FIELD_TYPE_N;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+        fieldLength = 3;
     }
 }

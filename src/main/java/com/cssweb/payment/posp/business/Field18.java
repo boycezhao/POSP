@@ -6,7 +6,14 @@ package com.cssweb.payment.posp.business;
 public class Field18  extends Field{
     public Field18()
     {
+        //取值请参见GB/T 20548-2006《金融零售业务 商户类别代码》
+
         fieldName = "商户类型";
         fieldNo = 18;
+
+        fieldType = FIELD_TYPE_N;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+        fieldLength = 4;
     }
 }

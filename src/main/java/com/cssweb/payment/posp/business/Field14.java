@@ -9,5 +9,10 @@ public class Field14 extends Field{
     {
         fieldName = "卡有效期";
         fieldNo = 14;
+
+        fieldType = FIELD_TYPE_N;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+        fieldLength = 4;
     }
 }

@@ -10,5 +10,10 @@ public class Field128 extends Field {
         fieldName = "报文鉴别码";
         fieldNo = 128;
 
+        fieldType = FIELD_TYPE_BINARY_BIT;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+        fieldLength = 64; // bit64
+
     }
 }

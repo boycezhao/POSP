@@ -9,6 +9,11 @@ public class Field35 extends Field {
     {
         fieldName = "第二磁道数据";
         fieldNo = 35;
+
+        fieldType = FIELD_TYPE_Z;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_VAR2;
+        maxFieldLength = 37;
     }
 
 }

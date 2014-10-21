@@ -9,5 +9,10 @@ public class Field37 extends Field{
     {
         fieldName = "检索参考号";
         fieldNo = 37;
+
+        fieldType = FIELD_TYPE_AN;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+        maxFieldLength = 12;
     }
 }

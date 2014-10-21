@@ -9,6 +9,11 @@ public class Field52 extends Field{
     {
         fieldName = "个人标识码数据";
         fieldNo = 52;
+
+        fieldType = FIELD_TYPE_BINARY_BIT;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+        fieldLength = 64;
     }
 
 }

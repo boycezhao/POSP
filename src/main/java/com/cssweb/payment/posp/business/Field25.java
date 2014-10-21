@@ -9,5 +9,10 @@ public class Field25  extends Field{
     {
         fieldName = "服务点条件码";
         fieldNo = 25;
+
+        fieldType = FIELD_TYPE_N;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+        fieldLength = 2;
     }
 }

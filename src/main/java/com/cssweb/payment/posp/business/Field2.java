@@ -9,6 +9,11 @@ public class Field2 extends Field{
     {
         fieldName = "主账号";
         fieldNo = 2;
+
+        fieldType = FIELD_TYPE_N;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_VAR2;
+        maxFieldLength = 19;
     }
 
 

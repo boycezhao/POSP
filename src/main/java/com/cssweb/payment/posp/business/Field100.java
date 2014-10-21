@@ -9,5 +9,10 @@ public class Field100 extends Field {
     {
         fieldName = "接收机构标识码";
         fieldNo = 100;
+
+        fieldType = FIELD_TYPE_N;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_VAR2;
+        maxFieldLength = 11;
     }
 }

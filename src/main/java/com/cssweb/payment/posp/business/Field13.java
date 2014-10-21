@@ -8,5 +8,10 @@ public class Field13 extends Field{
     {
         fieldName = "受卡方所在地日期";
         fieldNo = 13;
+
+        fieldType = FIELD_TYPE_N;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+        fieldLength = 4;
     }
 }

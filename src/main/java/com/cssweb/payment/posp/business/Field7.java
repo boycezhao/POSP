@@ -10,8 +10,11 @@ public class Field7 extends Field{
     {
         fieldName = "交易传输时间";
         fieldNo = 7;
-        fieldLength = 10;
+
+        fieldType = FIELD_TYPE_N;
+
         fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+        fieldLength = 10;
     }
 
 

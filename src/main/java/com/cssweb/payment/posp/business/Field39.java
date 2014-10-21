@@ -10,6 +10,9 @@ public class Field39  extends Field{
        fieldName = "应答码";
 
        fieldNo = 39;
+
+       fieldType = FIELD_TYPE_AN;
+
        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
        fieldLength = 2;
 

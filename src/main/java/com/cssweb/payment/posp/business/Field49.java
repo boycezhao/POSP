@@ -9,5 +9,10 @@ public class Field49 extends Field {
     {
         fieldName = "交易货币代码";
         fieldNo = 49;
+
+        fieldType = FIELD_TYPE_AN;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+        fieldLength = 3;
     }
 }
