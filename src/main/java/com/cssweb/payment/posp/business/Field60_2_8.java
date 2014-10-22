@@ -19,5 +19,8 @@ public class Field60_2_8 extends Field{
 
         fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
         fieldLength = 2;
+
+
+        isSubField = true;
     }
 }

@@ -5,8 +5,8 @@ package com.cssweb.payment.posp.business;
  */
 public class Field60_3_4 extends Field{
 
-    public static final String  TRADE_RETURN_BALANCE_NOT_SUPPORT = "0";
-    public static final String  TRADE_RETURN_BALANCE_SUPPORT = "1";
+    public static final String  TRADE_RETURN_BALANCE_NOT_SUPPORT = "0"; //不支持
+    public static final String  TRADE_RETURN_BALANCE_SUPPORT = "1"; //支持
 
     public Field60_3_4()
     {
