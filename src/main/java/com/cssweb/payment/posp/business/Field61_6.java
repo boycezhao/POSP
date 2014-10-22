@@ -8,10 +8,10 @@ public class Field61_6 extends Field{
     {
         fieldName = "安全信息校验值";
 
-        fieldType = ;
+        fieldType = FIELD_TYPE_ANS;
 
-        fieldLengthType = ;
-        fieldLength = ;
+        fieldLengthType = FIELD_LENGTH_TYPE_VAR3;
+        maxFieldLength = 168;
 
         isSubField = true;
     }

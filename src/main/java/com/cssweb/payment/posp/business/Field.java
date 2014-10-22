@@ -25,6 +25,7 @@ public class Field {
     public static final String FIELD_TYPE_N = "n";
     public static final String FIELD_TYPE_Z = "Z";
     public static final String FIELD_TYPE_AN = "an";
+    public static final String FIELD_TYPE_ANSB = "ansb";
 
     // 长度类型
     public static final int FIELD_LENGTH_TYPE_FIXED = 0; // 定长

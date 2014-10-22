@@ -10,7 +10,8 @@ public class Field122_2 extends Field{
         fieldName = "受理方信息";
 
         fieldType = FIELD_TYPE_ANS;
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_VAR2;
         maxFieldLength = 94;
 
         isSubField = true;

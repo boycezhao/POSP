@@ -9,5 +9,10 @@ public class Field48 extends Field {
     {
         fieldName = "附加数据－私有";
         fieldNo = 48;
+
+        fieldType = FIELD_TYPE_ANSB;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_VAR3;
+        maxFieldLength = 512;
     }
 }
