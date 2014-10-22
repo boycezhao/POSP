@@ -146,4 +146,15 @@ public class Field {
             return null;
         }
     }
+
+    /**
+     * 验证数据格式
+     * @return
+     */
+    public boolean validate()
+    {
+        // 用正则表达式验证数据格式
+        // 返回RejectCode
+        return true;
+    }
 }
