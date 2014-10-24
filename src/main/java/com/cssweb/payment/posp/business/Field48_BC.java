@@ -1,0 +1,22 @@
+package com.cssweb.payment.posp.business;
+
+/**
+ * Created by chenhf on 2014/10/22.
+ */
+public class Field48_BC extends Field{
+    private String risk;
+    private byte riskLevel;
+    private String riskScore;
+    private String reserved = "";
+
+    public Field48_BC()
+    {
+        fieldName = "可疑欺诈交易通知信息";
+        fieldNo = 128;
+
+        fieldType = FIELD_TYPE_ANSB;
+
+        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+        fieldLength = 19;
+    }
+}
