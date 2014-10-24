@@ -18,7 +18,7 @@ public class Field121_1 extends Field{
     public Field121_1()
     {
         fieldName = "应答原因码";
-        //fieldNo = "";
+        fieldNo = "121.1";
 
         fieldType = FIELD_TYPE_ANS;
 

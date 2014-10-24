@@ -12,7 +12,7 @@ public class Field48_BC extends Field{
     public Field48_BC()
     {
         fieldName = "可疑欺诈交易通知信息";
-        fieldNo = 128;
+        fieldNo = "48.BC";
 
         fieldType = FIELD_TYPE_ANSB;
 

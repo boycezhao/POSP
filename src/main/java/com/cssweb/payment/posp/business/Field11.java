@@ -8,7 +8,7 @@ public class Field11 extends Field{
    public Field11()
    {
         fieldName = "系统跟踪号";
-        fieldNo = 11;
+        fieldNo = "11";
 
        fieldType = FIELD_TYPE_N;
 

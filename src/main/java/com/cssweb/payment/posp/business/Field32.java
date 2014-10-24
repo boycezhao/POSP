@@ -8,7 +8,7 @@ public class Field32 extends Field{
     public Field32()
     {
         fieldName = "受理机构标识码";
-        fieldNo = 32;
+        fieldNo = "32";
 
         fieldType = FIELD_TYPE_N;
 

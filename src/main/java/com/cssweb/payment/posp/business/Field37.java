@@ -8,7 +8,7 @@ public class Field37 extends Field{
     public Field37()
     {
         fieldName = "检索参考号";
-        fieldNo = 37;
+        fieldNo = "37";
 
         fieldType = FIELD_TYPE_AN;
 

@@ -7,6 +7,7 @@ public class Field61_3 extends Field{
     public Field61_3()
     {
         fieldName = "PVV校验结果";
+        fieldNo = "61.3";
 
         fieldType = FIELD_TYPE_ANS;
 

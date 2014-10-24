@@ -7,6 +7,6 @@ public class Field62 extends Field{
     public Field62()
     {
         fieldName = "交换中心数据";
-        fieldNo = 62;
+        fieldNo = "62";
     }
 }

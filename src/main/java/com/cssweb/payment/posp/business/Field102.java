@@ -7,6 +7,6 @@ public class Field102 extends Field{
     public Field102()
     {
         fieldName = "账户标识1";
-        fieldNo = 102;
+        fieldNo = "102";
     }
 }

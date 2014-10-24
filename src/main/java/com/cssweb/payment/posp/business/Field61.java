@@ -8,7 +8,7 @@ public class Field61 extends Field {
     public Field61()
     {
         fieldName = "持卡人身份认证信息";
-        fieldNo = 61;
+        fieldNo = "61";
 
         fieldType = FIELD_TYPE_ANS;
 

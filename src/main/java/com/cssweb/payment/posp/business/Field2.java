@@ -8,7 +8,7 @@ public class Field2 extends Field{
     public Field2()
     {
         fieldName = "主账号";
-        fieldNo = 2;
+        fieldNo = "2";
 
         fieldType = FIELD_TYPE_N;
 

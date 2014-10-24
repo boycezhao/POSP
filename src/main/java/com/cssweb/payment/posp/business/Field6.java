@@ -7,6 +7,6 @@ public class Field6 extends Field{
     public Field6()
     {
         fieldName = "持卡人扣账金额";
-        fieldNo = 6;
+        fieldNo = "6";
     }
 }

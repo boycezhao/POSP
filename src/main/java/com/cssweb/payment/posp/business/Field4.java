@@ -7,6 +7,6 @@ public class Field4 extends Field {
     public Field4()
     {
         fieldName = "交易金额";
-        fieldNo = 4;
+        fieldNo = "4";
     }
 }

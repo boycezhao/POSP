@@ -18,7 +18,7 @@ public class Field48_IN extends Field{
     public Field48_IN()
     {
         fieldName = "预付卡发卡机构ecure认证信息";
-        fieldNo = 128;
+        fieldNo = "48.IN";
 
         fieldType = FIELD_TYPE_ANS;
 

@@ -17,6 +17,7 @@ public class Field61_1 extends Field{
     public Field61_1()
     {
         fieldName = "证件编号";
+        fieldNo = "61.1";
 
         fieldType = FIELD_TYPE_ANS;
 

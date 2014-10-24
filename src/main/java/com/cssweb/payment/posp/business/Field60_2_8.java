@@ -16,6 +16,7 @@ public class Field60_2_8 extends Field{
     public Field60_2_8()
     {
         fieldName = "电子商务标识（ECI）";
+        fieldNo = "60.2.8";
 
         fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
         fieldLength = 2;

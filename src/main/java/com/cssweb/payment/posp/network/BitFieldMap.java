@@ -189,7 +189,8 @@ public class BitFieldMap {
     {
         for (Field field : fields)
         {
-            int fieldNo = field.getFieldNo();
+            String sfieldNo = field.getFieldNo();
+            int fieldNo = Integer.parseInt(sfieldNo);
 
             array[fieldNo - 1] = 1; // 置有效位
 

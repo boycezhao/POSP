@@ -8,6 +8,6 @@ public class Field63 extends Field{
     public Field63()
     {
         fieldName  = "金融网络数据";
-        fieldNo = 63;
+        fieldNo = "63";
     }
 }

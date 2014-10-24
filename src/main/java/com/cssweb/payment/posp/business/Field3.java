@@ -45,7 +45,7 @@ public class Field3  extends Field{
     public Field3()
     {
         fieldName = "交易处理码";
-        fieldNo = 3;
+        fieldNo = "3";
 
         fieldType = FIELD_TYPE_N;
 

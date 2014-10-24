@@ -19,6 +19,8 @@ public class Field60_3_6 extends Field{
     public Field60_3_6()
     {
         fieldName = "交易介质";
+        fieldNo = "60.3.6";
+
         fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
         fieldLength = 1;
     }

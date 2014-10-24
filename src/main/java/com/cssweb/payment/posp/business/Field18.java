@@ -9,7 +9,7 @@ public class Field18  extends Field{
         //取值请参见GB/T 20548-2006《金融零售业务 商户类别代码》
 
         fieldName = "商户类型";
-        fieldNo = 18;
+        fieldNo = "18";
 
         fieldType = FIELD_TYPE_N;
 

@@ -31,6 +31,7 @@ public class Field60_2_5 extends Field{
     public Field60_2_5()
     {
         fieldName = "终端类型";
+        fieldNo = "60.2.5";
 
         fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
         fieldLength = 2;

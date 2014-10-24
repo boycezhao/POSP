@@ -19,7 +19,7 @@ public class Field53 extends Field {
     public Field53()
     {
         fieldName = "安全控制信息";
-        fieldNo = 53;
+        fieldNo = "53";
 
         fieldType = FIELD_TYPE_N;
 

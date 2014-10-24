@@ -9,7 +9,7 @@ public class Field7 extends Field{
     public Field7()
     {
         fieldName = "交易传输时间";
-        fieldNo = 7;
+        fieldNo = "7";
 
         fieldType = FIELD_TYPE_N;
 

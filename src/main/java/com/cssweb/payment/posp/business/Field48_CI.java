@@ -9,7 +9,7 @@ public class Field48_CI extends Field{
     public Field48_CI()
     {
         fieldName = "持卡人身份信息";
-        fieldNo = 128;
+        fieldNo = "48.CI";
 
         fieldType = FIELD_TYPE_ANS;
 

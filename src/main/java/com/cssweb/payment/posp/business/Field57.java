@@ -15,7 +15,7 @@ public class Field57 extends Field {
     public Field57()
     {
         fieldName = "附加交易信息";
-        fieldNo = 57;
+        fieldNo = "57";
 
         fieldType = FIELD_TYPE_ANS;
 

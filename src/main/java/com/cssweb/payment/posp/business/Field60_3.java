@@ -8,6 +8,7 @@ public class Field60_3 extends Field{
     public Field60_3()
     {
         fieldName = "交易发生附加信息";
+        fieldNo = "60.3";
 
         fieldLengthType = FIELD_LENGTH_TYPE_VAR2;
         maxFieldLength = 15;

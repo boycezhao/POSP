@@ -11,7 +11,7 @@ public class Field48_IP extends Field{
     public Field48_IP()
     {
         fieldName = "分期付款信息";
-        fieldNo = 128;
+        fieldNo = "48.IP";
 
         fieldType = FIELD_TYPE_ANS;
 

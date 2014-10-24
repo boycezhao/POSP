@@ -14,7 +14,7 @@ public class Field48_AS extends Field{
     public Field48_AS()
     {
         fieldName = "组合用法";
-        fieldNo = 128;
+        fieldNo = "48.AS";
 
         fieldType = FIELD_TYPE_N;
 

@@ -21,7 +21,7 @@ public class Field121_3 extends Field{
     public Field121_3()
     {
         fieldName = "卡性质";
-        //fieldNo = "";
+        fieldNo = "121.3";
 
         fieldType = FIELD_TYPE_ANS;
 

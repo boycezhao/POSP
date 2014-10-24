@@ -12,6 +12,7 @@ public class Field61_2 extends Field{
     public Field61_2()
     {
         fieldName = "CVV校验结果";
+        fieldNo = "61.2";
 
         fieldType = FIELD_TYPE_ANS;
 

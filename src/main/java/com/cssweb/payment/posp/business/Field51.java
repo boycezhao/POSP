@@ -8,6 +8,6 @@ public class Field51 extends Field{
     public Field51()
     {
         fieldName = "持卡人账户货币代码";
-        fieldNo = 51;
+        fieldNo = "51";
     }
 }

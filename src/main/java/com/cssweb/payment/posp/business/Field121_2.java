@@ -12,7 +12,7 @@ public class Field121_2 extends Field{
     public Field121_2()
     {
         fieldName = "单/双或双/单转换码";
-        //fieldNo = "";
+        fieldNo = "121.2";
 
         fieldType = FIELD_TYPE_ANS;
 

@@ -28,6 +28,8 @@ public class Field60_3_5 extends Field{
     public Field60_3_5()
     {
         fieldName = "交易发起方式";
+        fieldNo = "60.3.5";
+
         fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
         fieldLength = 1;
     }

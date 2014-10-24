@@ -8,7 +8,7 @@ public class Field50 extends Field{
     public Field50()
     {
         fieldName = "清算货币代码";
-        fieldNo = 50;
+        fieldNo = "50";
     }
 
 }

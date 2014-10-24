@@ -8,7 +8,7 @@ public class Field48_AA extends Field{
     public Field48_AA()
     {
         fieldName = "受理方附加交易信息";
-        fieldNo = 128;
+        fieldNo = "48.AA";
 
         fieldType = FIELD_TYPE_ANSB;
 

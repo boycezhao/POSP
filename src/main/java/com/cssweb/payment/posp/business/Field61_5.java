@@ -12,6 +12,7 @@ public class Field61_5 extends Field{
     public Field61_5()
     {
         fieldName = "ARQC认证结果值";
+        fieldNo = "61.5";
 
         fieldType = FIELD_TYPE_ANS;
 

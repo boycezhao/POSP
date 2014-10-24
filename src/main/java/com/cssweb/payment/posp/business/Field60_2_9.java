@@ -13,6 +13,7 @@ public class Field60_2_9 extends Field{
     public Field60_2_9()
     {
         fieldName = "交互方式标志，与终端类型配合使用";
+        fieldNo = "60.2.9";
 
         fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
         fieldLength = 1;

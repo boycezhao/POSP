@@ -8,6 +8,7 @@ public class Field122_1 extends Field{
     public Field122_1()
     {
         fieldName = "商户扣率";
+        fieldNo = "122.1";
 
         fieldType = FIELD_TYPE_ANS;
 

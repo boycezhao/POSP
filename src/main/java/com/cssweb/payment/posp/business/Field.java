@@ -15,7 +15,7 @@ public class Field {
     protected String fieldName;
 
     // 域编号
-    protected int fieldNo;
+    protected String fieldNo;
 
     // 数据类型
     protected String fieldType;
@@ -76,10 +76,10 @@ public class Field {
         this.fieldName = fieldName;
     }
 
-    public int getFieldNo() {
+    public String getFieldNo() {
         return fieldNo;
     }
-    public void setFieldNo(int fieldNo) {
+    public void setFieldNo(String fieldNo) {
         this.fieldNo = fieldNo;
     }
 

@@ -8,7 +8,7 @@ public class Field48_RA extends Field{
     public Field48_RA()
     {
         fieldName = "折扣消费交易中的刷卡金额";
-        fieldNo = 128;
+        fieldNo = "48.RA";
 
         fieldType = FIELD_TYPE_N;
 

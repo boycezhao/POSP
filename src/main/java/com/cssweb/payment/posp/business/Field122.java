@@ -7,7 +7,7 @@ public class Field122 extends Field{
     public Field122()
     {
         fieldName = "受理方保留";
-        fieldNo = 122;
+        fieldNo = "122";
 
         fieldType = FIELD_TYPE_ANS;
 

@@ -22,7 +22,7 @@ public class Field48_CD extends Field{
     public Field48_CD()
     {
         fieldName = "收/付费理由";
-        fieldNo = 128;
+        fieldNo = "48.CD";
 
         fieldType = FIELD_TYPE_ANSB;
 

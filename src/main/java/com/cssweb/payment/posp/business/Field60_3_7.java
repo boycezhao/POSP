@@ -16,6 +16,8 @@ public class Field60_3_7 extends Field{
     public Field60_3_7()
     {
         fieldName = "IC卡的应用类型";
+        fieldNo = "60.3.7";
+
         fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
         fieldLength = 1;
     }

@@ -8,7 +8,7 @@ public class Field49 extends Field {
     public Field49()
     {
         fieldName = "交易货币代码";
-        fieldNo = 49;
+        fieldNo = "49";
 
         fieldType = FIELD_TYPE_AN;
 

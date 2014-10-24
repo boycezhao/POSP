@@ -7,6 +7,6 @@ public class Field16 extends Field{
     public Field16()
     {
         fieldName = "兑换日期";
-        fieldNo = 16;
+        fieldNo = "16";
     }
 }

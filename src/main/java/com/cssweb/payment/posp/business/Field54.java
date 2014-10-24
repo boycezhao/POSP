@@ -21,7 +21,7 @@ public class Field54 extends Field {
     public Field54()
     {
         fieldName = "实际余额";
-        fieldNo = 54;
+        fieldNo = "54";
 
         fieldType = FIELD_TYPE_AN;
 

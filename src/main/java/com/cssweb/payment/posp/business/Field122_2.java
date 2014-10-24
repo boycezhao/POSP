@@ -8,6 +8,7 @@ public class Field122_2 extends Field{
     public Field122_2()
     {
         fieldName = "受理方信息";
+        fieldNo = "122.2";
 
         fieldType = FIELD_TYPE_ANS;
 

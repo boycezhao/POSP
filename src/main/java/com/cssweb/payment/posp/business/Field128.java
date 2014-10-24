@@ -8,7 +8,7 @@ public class Field128 extends Field {
     public Field128()
     {
         fieldName = "报文鉴别码";
-        fieldNo = 128;
+        fieldNo = "128";
 
         fieldType = FIELD_TYPE_BINARY_BIT;
 

@@ -8,7 +8,7 @@ public class Field36 extends Field{
     public Field36()
     {
         fieldName = "第三磁道数据";
-        fieldNo = 36;
+        fieldNo = "36";
 
         fieldType = FIELD_TYPE_Z;
 

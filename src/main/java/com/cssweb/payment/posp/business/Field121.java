@@ -8,7 +8,7 @@ public class Field121 extends Field {
     public Field121()
     {
         fieldName = "预付卡发卡机构保留";
-        fieldNo = 121;
+        fieldNo = "121";
 
         fieldType = FIELD_TYPE_ANS;
 

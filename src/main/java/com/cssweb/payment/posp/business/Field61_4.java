@@ -13,6 +13,7 @@ public class Field61_4 extends Field{
     public Field61_4()
     {
         fieldName = "无卡校验值";
+        fieldNo = "61.4";
 
         fieldType = FIELD_TYPE_ANS;
 

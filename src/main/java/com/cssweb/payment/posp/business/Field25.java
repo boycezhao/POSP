@@ -8,7 +8,7 @@ public class Field25  extends Field{
     public Field25()
     {
         fieldName = "服务点条件码";
-        fieldNo = 25;
+        fieldNo = "25";
 
         fieldType = FIELD_TYPE_N;
 

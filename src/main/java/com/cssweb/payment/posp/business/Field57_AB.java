@@ -13,7 +13,7 @@ public class Field57_AB extends Field{
     public Field57_AB()
     {
         fieldName = "公共支付信息";
-        fieldNo = 128;
+        fieldNo = "57.AB";
 
         fieldType = FIELD_TYPE_ANSB;
 

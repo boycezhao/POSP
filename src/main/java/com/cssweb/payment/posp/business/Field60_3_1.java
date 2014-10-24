@@ -16,6 +16,7 @@ public class Field60_3_1 extends Field{
     public Field60_3_1()
     {
         fieldName = "特殊计费类型";
+        fieldNo = "60.3.1";
 
         fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
         fieldLength = 2;

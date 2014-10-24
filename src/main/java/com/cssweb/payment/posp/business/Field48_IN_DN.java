@@ -7,7 +7,7 @@ public class Field48_IN_DN extends Field{
     public Field48_IN_DN()
     {
         fieldName = "证书DN取值";
-        fieldNo = 128;
+        //fieldNo = "48";
 
         fieldType = FIELD_TYPE_ANS;
 

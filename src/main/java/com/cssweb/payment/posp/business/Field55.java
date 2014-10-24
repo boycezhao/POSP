@@ -8,6 +8,6 @@ public class Field55 extends Field{
     public Field55()
     {
         fieldName = "基于PBOC借贷记标准的IC卡数据域";
-        fieldNo = 55;
+        fieldNo = "55";
     }
 }

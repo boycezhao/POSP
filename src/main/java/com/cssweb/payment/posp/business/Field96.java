@@ -8,6 +8,6 @@ public class Field96 extends Field{
     public Field96()
     {
         fieldName = "报文安全码";
-        fieldNo = 96;
+        fieldNo = "96";
     }
 }
