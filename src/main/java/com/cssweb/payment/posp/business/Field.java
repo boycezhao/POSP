@@ -423,4 +423,46 @@ public class Field {
     {
         return "";
     }
+
+    /**
+     *
+     * @param fieldData
+     * @param srcPos
+     */
+    public int decode(byte[] fieldData, int srcPos)
+    {
+        int nextPos = 0;
+
+        if (fieldLengthType == FIELD_LENGTH_TYPE_FIXED) {
+            fieldValue = new byte[fieldLength];
+
+            System.arraycopy(fieldData, srcPos, fieldValue, 0, fieldLength);
+
+            nextPos =  srcPos + fieldLength;
+        }
+        else if (fieldLengthType == FIELD_LENGTH_TYPE_VAR2)
+        {
+            byte[] varLen = new byte[Field.FIELD_LENGTH_TYPE_VAR2];
+            System.arraycopy(fieldData, srcPos, varLen, 0, varLen.length);
+            int fieldLen = Integer.parseInt(new String(varLen));
+
+            fieldLength = Field.FIELD_LENGTH_TYPE_VAR2 + fieldLen;
+            System.out.println("fieldLength=" + fieldLength);
+            fieldValue = new byte[fieldLength];
+
+            System.arraycopy(fieldData, srcPos, fieldValue, 0, fieldLength);
+
+            nextPos =  srcPos + fieldLength;
+        }
+        else if(fieldLengthType == FIELD_LENGTH_TYPE_VAR3)
+        {
+
+        }
+        else
+        {
+
+        }
+
+        return nextPos;
+    }
 }

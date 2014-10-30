@@ -41,12 +41,12 @@ public class WorkerThread implements Runnable {
             client.sendResponse(response);
         }
 
-        if (msgType == "0200")
+        if (msgType.equals("0200"))
         {
             logger.info("接收到余额查询请求");
             BusiGetBalance getBalance = new BusiGetBalance();
-            //response = getBalance.process(request);
-            client.sendResponse(response);
+            response = getBalance.process(request);
+            //client.sendResponse(response);
         }
 
 
