@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/22.
  */
-public class Field48_RA extends Field{
+public class Field48_RA extends Field {
 
     public Field48_RA()
     {

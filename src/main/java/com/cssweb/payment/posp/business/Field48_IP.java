@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/22.
  */
-public class Field48_IP extends Field{
+public class Field48_IP extends Field {
     private String periods;
     private String items;
     private String reserved;

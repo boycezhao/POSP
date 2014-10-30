@@ -1,5 +1,6 @@
 package com.cssweb.payment.posp.business;
 
+
 import com.cssweb.payment.posp.network.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +18,7 @@ import java.util.Random;
 public class BusiEchoTest implements BusinessAction {
     private static final Logger logger = LogManager.getLogger(BusiEchoTest.class.getName());
 
-    @Override
+
     public CustomMessage process(CustomMessage request) {
         logger.info("process...");
 
@@ -39,53 +40,48 @@ public class BusiEchoTest implements BusinessAction {
         // 设置域值
         List<Field> fields = new ArrayList<Field>();
 
-        Field7 f7 = new Field7();
-        Date now = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("MMddHHmmss");
-        String tranTime = sdf.format(now);
-        f7.setFieldValue(tranTime);
-
-        Field11 f11 = new Field11();
-        String traceNo = "";
-        Random random = new Random();
-        for (int i=0; i<6; i++) {
-            traceNo += random.nextInt(10);
-        }
-        f11.setFieldValue(traceNo);
-
-        Field33 f33 = new Field33();
-        f33.setFieldValue("111111");
-
-        Field39 f39 = new Field39();
-        f39.setFieldValue("00");
-
-        Field70 f70 = new Field70();
-        f70.setFieldValue("301"); // 线路测试
+        try {
 
 
-        fields.add(f7);
-        fields.add(f11);
-        fields.add(f33);
-        fields.add(f39);
-        fields.add(f70);
-        // 设置域值结束
+            Field7 f7 = new Field7();
+            Date now = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("MMddHHmmss");
+            String tranTime = sdf.format(now);
+            f7.setFieldValue(tranTime);
 
+            Field11 f11 = new Field11();
+            String traceNo = "";
+            Random random = new Random();
+            for (int i = 0; i < 6; i++) {
+                traceNo += random.nextInt(10);
+            }
+            f11.setFieldValue(traceNo);
+
+            Field33 f33 = new Field33();
+            f33.setFieldValue("111111");
+
+            Field39 f39 = new Field39();
+            f39.setFieldValue("00");
+
+            Field70 f70 = new Field70();
+            f70.setFieldValue("301"); // 线路测试
+
+
+            fields.add(f7);
+            fields.add(f11);
+            fields.add(f33);
+            fields.add(f39);
+            fields.add(f70);
+            // 设置域值结束
+
+            // 设置域值
+            fieldData.encode(fields);
+
+            // 设置位图
+            bitFieldMap.setFields(fields);
 
         // 开始处理消息类型
         msgType.setMsgType("0830");
-
-        // 结束处理消息类型
-
-
-
-        // 设置位图
-        bitFieldMap.setFields(fields);
-
-
-
-        // 设置域值
-        try {
-            fieldData.encode(fields);
 
 
             // 设置消息头
@@ -102,7 +98,12 @@ public class BusiEchoTest implements BusinessAction {
             response.encode();
 
 
-        } catch (IOException e) {
+
+    } catch (FieldLengthException e) {
+        e.printStackTrace();
+    } catch (OverflowMaxLengthException e) {
+        e.printStackTrace();
+    }catch (IOException e) {
             e.printStackTrace();
         }
 

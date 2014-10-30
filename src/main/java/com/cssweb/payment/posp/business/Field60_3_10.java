@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/17.
  */
-public class Field60_3_10 extends Field{
+public class Field60_3_10 extends Field {
 
     public static final String CARD_PRODUCT_UNKNOWN = "00"; //未知
     public static final String CARD_PRODUCT_GOV = "01"; //公务卡

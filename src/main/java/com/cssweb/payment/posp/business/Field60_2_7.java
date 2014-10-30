@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/17.
  */
-public class Field60_2_7 extends Field{
+public class Field60_2_7 extends Field {
 
     // Chip Card Authentication Reliability Indicator
     public static final String IC_AUTH_RELIABILIY_INDICATOR_SUBSEQUENT = "0"; // 第8位或后继位存在时的填充值

@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/24.
  */
-public class Field57_IP extends Field{
+public class Field57_IP extends Field {
     private String amount; // 首期还款金额
     private String cur; // 还款币种
     private String fee; // 持卡人分期付款手续费

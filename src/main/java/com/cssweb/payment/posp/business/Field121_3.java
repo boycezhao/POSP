@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/20.
  */
-public class Field121_3 extends Field{
+public class Field121_3 extends Field {
     public static final String CARD_TYPE_CUP_CREDIT = "9";
     public static final String CARD_TYPE_CUP_DEBIT = "C";
     public static final String CARD_TYPE_CUP_SEMI_CREDIT = "A";
@@ -29,5 +29,6 @@ public class Field121_3 extends Field{
         fieldLength = 1;
 
         isSubField = true;
+        beginPos = 2;
     }
 }

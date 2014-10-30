@@ -16,5 +16,7 @@ public class Field121 extends Field {
         maxFieldLength = 100;
 
         isSubField = true;
+
+        //fieldValue = new byte[maxFieldLength];
     }
 }

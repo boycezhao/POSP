@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/17.
  */
-public class Field60_3_1 extends Field{
+public class Field60_3_1 extends Field {
 
     public static final String BILL_TYPE_NORMAL = "00"; // 无特殊计费类型
     public static final String BILL_TYPE_PERIOD = "01"; // 周期计费

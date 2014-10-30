@@ -5,7 +5,7 @@ import com.cssweb.payment.posp.network.CustomMessage;
 /**
  * Created by chenhf on 2014/10/15.
  */
-public class BusiConsumeReverse implements BusinessAction{
+public class BusiConsumeReverse implements BusinessAction {
     @Override
     public CustomMessage process(CustomMessage request) {
         return null;

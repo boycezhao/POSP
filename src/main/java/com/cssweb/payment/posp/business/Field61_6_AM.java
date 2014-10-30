@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/24.
  */
-public class Field61_6_AM extends Field{
+public class Field61_6_AM extends Field {
 
     private byte password;//密码验证
     private byte cardExpire;//卡有效期验证

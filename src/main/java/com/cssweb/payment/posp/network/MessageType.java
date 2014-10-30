@@ -16,7 +16,7 @@ public class MessageType {
     public void setMsgType(String msgType) {
         // 必须是4字节长度
 
-        this.msgType = msgType.getBytes();
+        setMsgType(msgType.getBytes());
     }
 
     public void setMsgType(byte[] msgType)
@@ -37,5 +37,8 @@ public class MessageType {
         return msgType.length;
     }
 
-
+    public String toString()
+    {
+        return new String(msgType);
+    }
 }

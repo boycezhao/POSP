@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/17.
  */
-public class Field60_3_6 extends Field{
+public class Field60_3_6 extends Field {
 
     public static final String CARD_MATERIAL_UNKNOWN = "0";  //未知
     public static final String CARD_MATERIAL_MAGNETIC = "1"; // 磁条卡

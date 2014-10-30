@@ -1,11 +1,12 @@
 package com.cssweb.payment.posp.business;
 
+
 import com.cssweb.payment.posp.network.MessageType;
 
 /**
  * Created by chenhf on 2014/10/22.
  */
-public class Field48_CD extends Field{
+public class Field48_CD extends Field {
 
     //交易是否相关标志
     private String flag;

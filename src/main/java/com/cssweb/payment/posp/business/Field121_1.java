@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/20.
  */
-public class Field121_1 extends Field{
+public class Field121_1 extends Field {
 
     public static final String RC_SW_TIMEOUT = "1"; // 预付卡发卡机构计算请求超时，代授权予以响应
     public static final String RC_LOWER_AMOUNT = "2"; // 交易的金额低于发卡方的限制，代授权予以响应
@@ -26,5 +26,6 @@ public class Field121_1 extends Field{
         fieldLength = 1;
 
         isSubField = true;
+        beginPos = 0;
     }
 }

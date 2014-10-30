@@ -11,12 +11,7 @@ public class WorkerThread implements Runnable {
 	private static final Logger logger =  LogManager.getLogger(WorkerThread.class.getName());
 
     private POSPClient client;
-
 	private CustomMessage request;
-    private BusiEchoTest testNetwork = new BusiEchoTest();
-    private BusiGetBalance getBalance = new BusiGetBalance();
-	
-
 
 	public WorkerThread(CustomMessage req, POSPClient client)
 	{
@@ -41,17 +36,19 @@ public class WorkerThread implements Runnable {
 
         if (msgType.equals("0820"))
         {
-            response = testNetwork.process(request);
+            BusiEchoTest echo = new BusiEchoTest();
+            response = echo.process(request);
+            client.sendResponse(response);
         }
 
         if (msgType == "0200")
         {
-            response = getBalance.process(request);
+            logger.info("接收到余额查询请求");
+            BusiGetBalance getBalance = new BusiGetBalance();
+            //response = getBalance.process(request);
+            client.sendResponse(response);
         }
 
 
-        //req.getChannelHandlerContext().writeAndFlush(response);
-        // 发送应答消息
-        client.sendResponse(response);
 	}
 }

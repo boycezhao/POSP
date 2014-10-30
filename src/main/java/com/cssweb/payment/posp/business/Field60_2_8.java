@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/17.
  */
-public class Field60_2_8 extends Field{
+public class Field60_2_8 extends Field {
 
     public static final String ECI_UNKNOWN = "00"; //未使用或后续子域存在
     public static final String ECI_UNION = "01"; //进行了银联安全输入模式认证，且持卡人安全信息输入成功

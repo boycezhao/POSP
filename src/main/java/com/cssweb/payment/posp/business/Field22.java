@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/16.
  */
-public class Field22 extends Field{
+public class Field22 extends Field {
     public static final String PAN_UNKNOW = "00";
     public static final String PAN_MAGNETIC = "01";//手工
     public static final String PAN_MANUAL = "02";//接触式读取磁条
@@ -20,6 +20,27 @@ public class Field22 extends Field{
     public static final String PIN_INCLUDE  = "1"; //交易中包含PIN
     public static final String PIN_NOT_INCLUDE  = "2";//交易中不包含PIN
 
+    public String getPAN() {
+        return PAN;
+    }
+
+
+
+    public String getPIN() {
+        return PIN;
+    }
+
+    public void setPAN(String PAN) {
+        this.PAN = PAN;
+        System.arraycopy(PAN.getBytes(), 0, fieldValue, 0, PAN.getBytes().length);
+    }
+    public void setPIN(String PIN) {
+        this.PIN = PIN;
+        System.arraycopy(PIN.getBytes(), 0, fieldValue, 2, PIN.getBytes().length);
+    }
+
+    private String PAN;
+    private String PIN;
 
     public Field22()
     {
@@ -30,6 +51,8 @@ public class Field22 extends Field{
 
         fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
         fieldLength = 3;
+
+        //fieldValue = new byte[fieldLength];
     }
 
 }

@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/20.
  */
-public class Field61_1 extends Field{
+public class Field61_1 extends Field {
 
     public static final String IDTYPE_ID = "01";  // 身份证
     public static final String IDTYPE_ARMY = "02";// 军官证

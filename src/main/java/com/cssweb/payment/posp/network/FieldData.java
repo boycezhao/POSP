@@ -1,5 +1,6 @@
 package com.cssweb.payment.posp.network;
 
+
 import com.cssweb.payment.posp.business.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,93 +33,104 @@ public class FieldData {
 
     public void decode(byte[] array, byte[] fieldData) {
 
-        this.fieldData = fieldData;
-        fieldDataLen = fieldData.length;
+        try {
 
-        // 分析域值
-        int fieldNo = 0;
-        int srcPos = 0;
-        int fieldLen = 0;
 
-        for (int i=0; i<array.length; i++)
-        {
-            fieldNo = i + 1;
+            this.fieldData = fieldData;
+            fieldDataLen = fieldData.length;
 
-            // 位无效，即没有设置相应的域内容
-            if (array[i] == 0) {
-                continue;
-            }
+            // 分析域值
+            int fieldNo = 0;
+            int srcPos = 0;
+            int fieldLen = 0;
 
-            switch (fieldNo) {
-                case 1:
-                case 64:
-                {
-                    break;
+            for (int i = 0; i < array.length; i++) {
+                fieldNo = i + 1;
+
+                // 位无效，即没有设置相应的域内容
+                if (array[i] == 0) {
+                    continue;
                 }
-                case 7: {
-                    Field7 f7 = new Field7();
-                    fieldLen = f7.getFieldLength();
-                    byte[] data = new byte[fieldLen];
-                    System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
-                    f7.setFieldValue(data);
-                    srcPos += fieldLen;
-                    fieldMap.put(fieldNo, f7);
-                    break;
-                }
-                case 11:{
-                    Field11 f11 = new Field11();
-                    fieldLen = f11.getFieldLength();
-                    byte[] data = new byte[fieldLen];
-                    System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
-                    f11.setFieldValue(data);
-                    srcPos += fieldLen;
-                    fieldMap.put(fieldNo, f11);
-                    break;
-                }
-                case 33:{
-                    Field33 f33 = new Field33();
 
-                    byte[] varLen = new byte[Field.FIELD_LENGTH_TYPE_VAR2];
-                    System.arraycopy(fieldData, srcPos, varLen, 0, varLen.length);
-                    srcPos += varLen.length;
+                switch (fieldNo) {
+                    case 1:
+                    case 64: {
+                        break;
+                    }
+                    case 7: {
+                        Field7 f7 = new Field7();
+                        fieldLen = f7.getFieldLength();
+                        byte[] data = new byte[fieldLen];
+                        System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
+                        f7.setFieldValue(data);
+                        srcPos += fieldLen;
+                        fieldMap.put(fieldNo, f7);
+                        break;
+                    }
+                    case 11: {
+                        Field11 f11 = new Field11();
+                        fieldLen = f11.getFieldLength();
+                        byte[] data = new byte[fieldLen];
+                        System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
+                        f11.setFieldValue(data);
+                        srcPos += fieldLen;
+                        fieldMap.put(fieldNo, f11);
+                        break;
+                    }
+                    case 33: {
+                        Field33 f33 = new Field33();
 
-                    fieldLen = Integer.parseInt(new String(varLen));
-                    byte[] data = new byte[fieldLen];
-                    System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
-                    f33.setFieldValue(data);
-                    srcPos += fieldLen;
+                        byte[] varLen = new byte[Field.FIELD_LENGTH_TYPE_VAR2];
+                        System.arraycopy(fieldData, srcPos, varLen, 0, varLen.length);
+                        srcPos += varLen.length;
 
-                    fieldMap.put(fieldNo, f33);
-                    break;
-                }
-                case 39: {
-                    Field39 f39 = new Field39();
-                    fieldLen = f39.getFieldLength();
-                    byte[] data = new byte[fieldLen];
-                    System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
-                    f39.setFieldValue(data);
-                    srcPos += fieldLen;
-                    fieldMap.put(fieldNo, f39);
-                    break;
-                }
-                case 70: {
-                    Field70 f70 = new Field70();
-                    fieldLen = f70.getFieldLength();
-                    byte[] data = new byte[fieldLen];
-                    System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
-                    f70.setFieldValue(data);
-                    srcPos += fieldLen;
-                    fieldMap.put(fieldNo, f70);
-                    break;
-                }
-                default:
-                    System.out.println("FieldData decode error.fieldNo=" + fieldNo);
-            }//end switch
-        }//end for
+                        fieldLen = Integer.parseInt(new String(varLen));
+                        byte[] data = new byte[fieldLen];
+                        System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
+                        f33.setFieldValue(data);
+                        srcPos += fieldLen;
+
+                        fieldMap.put(fieldNo, f33);
+                        break;
+                    }
+                    case 39: {
+                        Field39 f39 = new Field39();
+                        fieldLen = f39.getFieldLength();
+                        byte[] data = new byte[fieldLen];
+                        System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
+                        f39.setFieldValue(data);
+                        srcPos += fieldLen;
+                        fieldMap.put(fieldNo, f39);
+                        break;
+                    }
+                    case 70: {
+                        Field70 f70 = new Field70();
+                        fieldLen = f70.getFieldLength();
+                        byte[] data = new byte[fieldLen];
+                        System.arraycopy(fieldData, srcPos, data, 0, fieldLen);
+                        f70.setFieldValue(data);
+                        srcPos += fieldLen;
+                        fieldMap.put(fieldNo, f70);
+                        break;
+                    }
+                    default:
+                        System.out.println("FieldData decode error.fieldNo=" + fieldNo);
+                }//end switch
+            }//end for
+
+        }catch (FieldLengthException e) {
+            e.printStackTrace();
+        } catch (OverflowMaxLengthException e) {
+            e.printStackTrace();
+        }
     }
 
 
-
+    /**
+     *
+     * @param fields
+     * @throws java.io.IOException
+     */
     public void encode(List<Field> fields) throws IOException {
         this.fields = fields;
 
@@ -129,6 +141,7 @@ public class FieldData {
         //StringBuffer sb = new StringBuffer();
         for (Field field : fields)
         {
+
             byte[] fieldValue = field.getFieldValue();
 
             baos.write(fieldValue);
@@ -157,5 +170,13 @@ public class FieldData {
     }
     public void setFieldDataLen(int fieldDataLen) {
         this.fieldDataLen = fieldDataLen;
+    }
+
+    public String toString()
+    {
+        StringBuffer sb = new StringBuffer();
+        sb.append("域数据总长度=" + fieldDataLen);
+        sb.append("; 域数据=" + new String(fieldData));
+        return sb.toString();
     }
 }

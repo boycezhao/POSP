@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/17.
  */
-public class Field60_3_7 extends Field{
+public class Field60_3_7 extends Field {
 
     public static final String CARD_APP_TYPE_UNKNOWN = "0";  // 未知
     public static final String CARD_APP_TYPE_PBOC = "1"; // PBOC借贷记标准的借贷记应用（含接触式和非接触式）

@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/22.
  */
-public class Field48_RP extends Field{
+public class Field48_RP extends Field {
 
     private String code; //商品代码
     private String reserved; //保留使用

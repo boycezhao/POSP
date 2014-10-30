@@ -41,7 +41,7 @@ public class MsgHeader {
      * 解码消息头
      * @param msgHeader
      * @return
-     * @throws IOException
+     * @throws java.io.IOException
      */
     public boolean decode(byte[] msgHeader)  {
         try {
@@ -90,7 +90,7 @@ public class MsgHeader {
      * @param userInfo
      * @param rejectCode
      * @return
-     * @throws IOException
+     * @throws java.io.IOException
      */
     public boolean encode(int totalLen, String destId, String srcId, byte batchNo, String tradeInfo, byte userInfo, String rejectCode) throws IOException {
         setMsgHeaderLen((byte)46);

@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/10/17.
  */
-public class Field60_3_5 extends Field{
+public class Field60_3_5 extends Field {
 
     public static final String TRADE_WAY_UNKNOWN = "0"; //该方式用于表示未知支付方式或不关心此交易的具体发起方式下的缺省表示。
     /*

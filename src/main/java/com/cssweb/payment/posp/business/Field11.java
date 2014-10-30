@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.business;
 /**
  * Created by chenhf on 2014/8/20.
  */
-public class Field11 extends Field{
+public class Field11 extends Field {
 
    public Field11()
    {
