@@ -47,7 +47,7 @@ public class BusiEchoTest implements BusinessAction {
             Date now = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("MMddHHmmss");
             String tranTime = sdf.format(now);
-            f7.setFieldValue(tranTime);
+            f7.setData(tranTime);
 
             Field11 f11 = new Field11();
             String traceNo = "";
@@ -55,16 +55,16 @@ public class BusiEchoTest implements BusinessAction {
             for (int i = 0; i < 6; i++) {
                 traceNo += random.nextInt(10);
             }
-            f11.setFieldValue(traceNo);
+            f11.setData(traceNo);
 
             Field33 f33 = new Field33();
-            f33.setFieldValue("111111");
+            f33.setData("111111");
 
             Field39 f39 = new Field39();
-            f39.setFieldValue("00");
+            f39.setData("00");
 
             Field70 f70 = new Field70();
-            f70.setFieldValue("301"); // 线路测试
+            f70.setData("301"); // 线路测试
 
 
             fields.add(f7);
