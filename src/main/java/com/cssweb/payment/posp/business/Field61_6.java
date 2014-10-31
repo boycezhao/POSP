@@ -22,9 +22,9 @@ public class Field61_6 extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_VAR3;
+        fieldValueType = FIELD_VALUE_TYPE_LLLV;
         maxFieldLength = 168;
 
-        isSubField = true;
+
     }
 }

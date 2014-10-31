@@ -11,7 +11,7 @@ public class Field70 extends Field {
         fieldNo = "70";
 
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 3;
+
+        dataLen = 3;
     }
 }

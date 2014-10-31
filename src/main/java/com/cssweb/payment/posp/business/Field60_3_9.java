@@ -19,7 +19,7 @@ public class Field60_3_9 extends Field {
         fieldName = "卡账户等级";
         fieldNo = "60.3.9";
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 1;
+
+        dataLen = 1;
     }
 }

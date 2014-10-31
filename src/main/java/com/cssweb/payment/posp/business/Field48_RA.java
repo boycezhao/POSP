@@ -12,7 +12,7 @@ public class Field48_RA extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 12;
+
+        dataLen = 12;
     }
 }

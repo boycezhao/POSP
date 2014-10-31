@@ -12,13 +12,13 @@ public class Field121_5_ID extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
+
         fieldLength = 38;
+        fieldValueType = FIELD_VALUE_TYPE_TV;
 
-        fieldValueType = FIELD_VALUE_TYPE_TL;
         tag = "ID";
-        valueLen = 36;
+        dataLen = 36;
 
-        isSubField = true;
+
     }
 }

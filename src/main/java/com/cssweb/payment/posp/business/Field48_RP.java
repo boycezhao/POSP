@@ -15,8 +15,8 @@ public class Field48_RP extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 60;
+
+        dataLen = 60;
     }
 
 }

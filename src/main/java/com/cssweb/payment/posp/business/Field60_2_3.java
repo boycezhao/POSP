@@ -24,7 +24,7 @@ public class Field60_2_3 extends Field {
         fieldName = "IC卡条件代码";
         fieldNo = "60.2.3";
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 1;
+
+        dataLen = 1;
     }
 }

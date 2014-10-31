@@ -16,7 +16,7 @@ public class Field48_BC extends Field {
 
         fieldType = FIELD_TYPE_ANSB;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 19;
+
+        dataLen = 19;
     }
 }

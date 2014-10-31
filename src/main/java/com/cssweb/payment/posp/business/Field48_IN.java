@@ -22,7 +22,7 @@ public class Field48_IN extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 2+20+2+20+14+42;
+
+        dataLen = 2+20+2+20+14+42;
     }
 }

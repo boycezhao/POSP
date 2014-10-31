@@ -18,7 +18,7 @@ public class Field60_2_1 extends Field {
         fieldName = "账户所有人类型";
         fieldNo = "60.2.1";
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 1;
+
+        dataLen = 1;
     }
 }

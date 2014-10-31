@@ -10,8 +10,8 @@ public class Field60_3_3 extends Field {
         fieldName = "保留使用";
         fieldNo = "60.3.3";
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 3;
+
+        dataLen = 3;
 
         fieldValue = "000".getBytes();
     }

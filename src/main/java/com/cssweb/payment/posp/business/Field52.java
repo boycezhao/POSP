@@ -12,8 +12,8 @@ public class Field52 extends Field {
 
         fieldType = FIELD_TYPE_BINARY_BIT;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 64/8;
+
+        dataLen = 64/8;
     }
 
 }

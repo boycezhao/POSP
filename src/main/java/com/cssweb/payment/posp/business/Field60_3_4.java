@@ -13,7 +13,7 @@ public class Field60_3_4 extends Field {
         fieldName = "支持部分承兑和返回余额标志";
         fieldNo = "60.3.4";
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 1;
+
+        dataLen = 1;
     }
 }

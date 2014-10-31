@@ -12,7 +12,7 @@ public class Field60_2_6 extends Field {
         fieldName = "免验密码网络标志";
         fieldNo = "60.2.6";
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 1;
+
+        dataLen = 1;
     }
 }

@@ -11,8 +11,8 @@ public class Field43 extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 40;
+
+        dataLen = 40;
     }
 
 }

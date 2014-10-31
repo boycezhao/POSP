@@ -11,11 +11,9 @@ public class Field121_4 extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 40;
-       // maxFieldLength = 50;
 
-        isSubField = true;
+        dataLen = 40;
+
         beginPos = 3;
     }
 }

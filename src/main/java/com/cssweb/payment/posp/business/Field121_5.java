@@ -5,6 +5,24 @@ package com.cssweb.payment.posp.business;
  */
 public class Field121_5 extends Field {
 
+    private Field121_5_FD FD;
+    private Field121_5_ID ID;
+
+    public Field121_5_FD getFD() {
+        return FD;
+    }
+
+    public void setFD(Field121_5_FD FD) {
+        this.FD = FD;
+    }
+
+    public Field121_5_ID getID() {
+        return ID;
+    }
+
+    public void setID(Field121_5_ID ID) {
+        this.ID = ID;
+    }
 
     public Field121_5()
     {
@@ -13,12 +31,14 @@ public class Field121_5 extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 38;
 
-        //fieldValue = new byte[fieldLength];
+        dataLen = 38;
+
+
 
         beginPos = 43;
-        isSubField = true;
+
+
+
     }
 }

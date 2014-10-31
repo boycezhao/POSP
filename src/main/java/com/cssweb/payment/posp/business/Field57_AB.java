@@ -17,7 +17,7 @@ public class Field57_AB extends Field {
 
         fieldType = FIELD_TYPE_ANSB;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_VAR3;
+        fieldValueType = FIELD_VALUE_TYPE_LLLV;
         maxFieldLength = 510;
     }
 }

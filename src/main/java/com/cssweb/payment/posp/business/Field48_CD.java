@@ -27,7 +27,7 @@ public class Field48_CD extends Field {
 
         fieldType = FIELD_TYPE_ANSB;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_VAR3;
-        fieldLength = 249;
+        fieldValueType = FIELD_VALUE_TYPE_LLLV;
+        maxFieldLength = 249;
     }
 }

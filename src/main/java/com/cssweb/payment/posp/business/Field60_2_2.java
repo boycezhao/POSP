@@ -18,8 +18,8 @@ public class Field60_2_2 extends Field {
         fieldName = "终端读取能力";
         fieldNo = "60.2.2";
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 1;
+
+        dataLen = 1;
 
     }
 }

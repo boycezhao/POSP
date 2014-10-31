@@ -52,8 +52,8 @@ public class Field53 extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 16;
+
+        dataLen = 16;
 /*
         fieldValue = new byte[fieldLength];
         for (int i=0; i<fieldLength; i++)

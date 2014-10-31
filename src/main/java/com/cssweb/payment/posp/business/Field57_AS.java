@@ -12,10 +12,10 @@ public class Field57_AS extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 12;
 
-        isSubField = true;
+        dataLen = 12;
+
+
     }
 
 }

@@ -21,9 +21,9 @@ public class Field61_1 extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 22;
 
-        isSubField = true;
+        dataLen = 22;
+
+
     }
 }

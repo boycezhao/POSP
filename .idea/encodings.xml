@@ -2,18 +2,11 @@
 <project version="4">
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/business/WorkerThread.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/business/WorkerThread.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/business/WorkerThreadPool.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/business/WorkerThreadPool.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/ByteArrayIntUtil.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/ByteArrayIntUtil.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/CustomDecoder.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/CustomDecoder.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/CustomEncoder.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/CustomEncoder.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/CustomMessage.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/CustomMessage.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/MsgHeader.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/network/MsgHeader.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/server/NettyServerHandler.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/cssweb/payment/posp/server/NettyServerInitializer.java" charset="UTF-8" />

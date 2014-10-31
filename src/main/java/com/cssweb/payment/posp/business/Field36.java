@@ -12,7 +12,7 @@ public class Field36 extends Field {
 
         fieldType = FIELD_TYPE_Z;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_VAR2;
+        fieldValueType = FIELD_VALUE_TYPE_LLV;
         maxFieldLength = 104;
     }
 

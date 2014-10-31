@@ -12,8 +12,8 @@ public class Field48_NK extends Field {
 
         fieldType = FIELD_TYPE_BINARY_BIT;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 4080;
+
+        dataLen = 4080;
     }
 
 }

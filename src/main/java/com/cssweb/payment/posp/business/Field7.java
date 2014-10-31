@@ -13,8 +13,8 @@ public class Field7 extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 10;
+
+        dataLen = 10;
     }
 
 

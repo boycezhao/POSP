@@ -11,7 +11,7 @@ public class Field48_IN_DN extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_VAR3;
+        fieldValueType = FIELD_VALUE_TYPE_LLLV;
         maxFieldLength = 255;
     }
 }

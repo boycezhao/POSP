@@ -12,7 +12,7 @@ public class Field48_AA extends Field {
 
         fieldType = FIELD_TYPE_ANSB;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_VAR3;
+        fieldValueType = FIELD_VALUE_TYPE_TLLLV;
         maxFieldLength = 510;
     }
 }

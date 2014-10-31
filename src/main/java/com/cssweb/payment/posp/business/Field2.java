@@ -14,10 +14,10 @@ public class Field2 extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_VAR2;
-        maxFieldLength = 2+19;
+        fieldValueType = FIELD_VALUE_TYPE_LLV;
 
-       // fieldValue = new byte[maxFieldLength];
+
+        maxFieldLength = 19;
 
 
     }

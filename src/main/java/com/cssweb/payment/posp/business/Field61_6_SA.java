@@ -23,9 +23,9 @@ public class Field61_6_SA extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 60;
 
-        isSubField = true;
+        dataLen = 60;
+
+
     }
 }

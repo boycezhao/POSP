@@ -12,9 +12,9 @@ public class Field60_1 extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 4;
 
-        isSubField = true;
+        dataLen = 4;
+
+
     }
 }

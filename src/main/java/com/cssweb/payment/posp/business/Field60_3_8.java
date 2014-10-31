@@ -19,7 +19,7 @@ public class Field60_3_8 extends Field {
         fieldName = "账户结算类型";
         fieldNo = "60.3.8";
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 2;
+
+        dataLen = 2;
     }
 }

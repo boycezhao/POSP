@@ -10,10 +10,10 @@ public class Field60_3 extends Field {
         fieldName = "交易发生附加信息";
         fieldNo = "60.3";
 
-        fieldLengthType = FIELD_LENGTH_TYPE_VAR2;
+        fieldValueType = FIELD_VALUE_TYPE_LLV;
         maxFieldLength = 15;
 
 
-        isSubField = true;
+
     }
 }

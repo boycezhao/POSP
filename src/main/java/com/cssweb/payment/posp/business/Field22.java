@@ -49,8 +49,8 @@ public class Field22 extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 3;
+
+        dataLen = 3;
 
         //fieldValue = new byte[fieldLength];
     }

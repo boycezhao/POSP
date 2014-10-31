@@ -13,8 +13,8 @@ public class Field39  extends Field {
 
        fieldType = FIELD_TYPE_AN;
 
-       fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-       fieldLength = 2;
+
+       dataLen = 2;
 
 
    }

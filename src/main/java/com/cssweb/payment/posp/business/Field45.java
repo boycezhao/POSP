@@ -11,7 +11,7 @@ public class Field45 extends Field {
 
         fieldType = FIELD_TYPE_Z;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_VAR2;
+
         maxFieldLength = 79;
     }
 }

@@ -12,14 +12,7 @@ import java.util.Map;
 public class Field {
     private static final Logger logger = LogManager.getLogger(Field.class.getName());
 
-    // 域描述
-    protected String fieldName = "";
-
-    // 域编号
-    protected String fieldNo = "";
-
-    // 数据类型
-    protected String fieldType = "";
+    // 域的数据类型
     public static final String FIELD_TYPE_BINARY_BIT = "b";
     public static final String FIELD_TYPE_BINARY_BYTE = "B";
     public static final String FIELD_TYPE_ANS = "ans";
@@ -29,47 +22,64 @@ public class Field {
     public static final String FIELD_TYPE_ANSB = "ansb";
 
     // 长度类型
-    public static final int FIELD_LENGTH_TYPE_FIXED = 0; // 定长
-    public static final int FIELD_LENGTH_TYPE_VAR2 = 2; // 变长2
-    public static final int FIELD_LENGTH_TYPE_VAR3 = 3; // 变长3
+    //public static final int FIELD_LENGTH_TYPE_FIXED = 0; // 定长
+    //public static final int FIELD_LENGTH_TYPE_VAR2 = 2; // 变长2
+    //public static final int FIELD_LENGTH_TYPE_VAR3 = 3; // 变长3
 
-    // 最大长度
+    /*
+        1.数据
+        2.2字节长度+数据
+        3.3字节长度+数据
+        4.tag+数据
+        5.tag+2字节长度+数据
+        6.tag+3字节长度+数据
+         */
+    //域的值构成类型
+    protected static final int FIELD_VALUE_TYPE_DEFAULT = 1;
+    protected static final int FIELD_VALUE_TYPE_LLV = 2;
+    protected static final int FIELD_VALUE_TYPE_LLLV = 3;
+    protected static final int FIELD_VALUE_TYPE_TV = 4;
+    protected static final int FIELD_VALUE_TYPE_TLLV = 5;
+    protected static final int FIELD_VALUE_TYPE_TLLLV = 6;
+
+
+    // 域描述
+    protected String fieldName = "";
+
+    // 域编号
+    protected String fieldNo = "";
+
+    // 数据类型
+    protected String fieldType = "";
+
+
+
+
+
+    protected int fieldValueType = FIELD_VALUE_TYPE_DEFAULT;
+
+    protected byte[] data = null; //真正的数据
+
+    protected int dataLen = 0;
+    // 最大数据长度
     protected int maxFieldLength = 0;
-
-    protected int fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-
-
-    // 长度
-    protected int fieldLength = 0;
-
-
-    // 域值
-    protected byte[] fieldValue = null;
 
     // 子域当前标志名称
     protected String tag = "";
-    protected int valueLen = 0;
-    protected String value = "";
-
     //如果是父域代表当前设置的是哪一个子域
     protected String currentTag = "";
 
-    protected static final int FIELD_VALUE_TYPE_DEFAULT = 0;
-    protected static final int FIELD_VALUE_TYPE_TL = 1;
-    protected static final int FIELD_VALUE_TYPE_TLV = 2;
-    protected int fieldValueType = FIELD_VALUE_TYPE_DEFAULT;
+    // 长度，fieldValue的长度
+    protected int fieldLength = 0;
+    // 完整的域值包括tag，
+    protected byte[] fieldValue = null;
 
     // 相对于父域的开始位置
     protected int beginPos = 0;
 
 
-    // 不采用getter/setter方式，可以
-    protected Map<String, Field> fields = new HashMap<String, Field>();
 
 
-    //以下定义暂时没使用
-    protected boolean isSubField = false; // 是否是子域
-    protected boolean hasSubField = false; // 是否有子域
 
 
     public Field()
@@ -95,12 +105,7 @@ public class Field {
         this.fieldValueType = fieldValueType;
     }
 
-    public int getValueLen() {
-        return valueLen;
-    }
-    public void setValueLen(int valueLen) {
-        this.valueLen = valueLen;
-    }
+
 
 
     public int getMaxFieldLength() {
@@ -117,18 +122,27 @@ public class Field {
         this.fieldType = fieldType;
     }
 
-    public int getFieldLengthType() {
-        return fieldLengthType;
-    }
-    public void setFieldLengthType(int fieldLengthType) {
-        this.fieldLengthType = fieldLengthType;
-    }
+
 
     public int getFieldLength() {
         return fieldLength;
     }
     public void setFieldLength(int fieldLength) {
-        this.fieldLength = fieldLength;
+
+
+        if (fieldLengthType == FIELD_LENGTH_TYPE_VAR2)
+        {
+            this.fieldLength = 2 + fieldLength;
+        }
+        else if (fieldLengthType == FIELD_LENGTH_TYPE_VAR3)
+        {
+            this.fieldLength = 3 + fieldLength;
+        }
+        else
+        {
+            this.fieldLength = fieldLength;
+        }
+
         fieldValue = new byte[fieldLength];
     }
 
@@ -163,12 +177,6 @@ public class Field {
     }
 
 
-    public String getValue() {
-        return value;
-    }
-    public void setValue(String value) {
-        this.value = value;
-    }
 
     public int getBeginPos() {
         return beginPos;
@@ -447,7 +455,7 @@ public class Field {
             int fieldLen = Integer.parseInt(new String(varLen));
 
             fieldLength = Field.FIELD_LENGTH_TYPE_VAR2 + fieldLen;
-            System.out.println("fieldLength=" + fieldLength);
+
             fieldValue = new byte[fieldLength];
 
             System.arraycopy(fieldData, srcPos, fieldValue, 0, fieldLength);
@@ -456,7 +464,17 @@ public class Field {
         }
         else if(fieldLengthType == FIELD_LENGTH_TYPE_VAR3)
         {
+            byte[] varLen = new byte[Field.FIELD_LENGTH_TYPE_VAR3];
+            System.arraycopy(fieldData, srcPos, varLen, 0, varLen.length);
+            int fieldLen = Integer.parseInt(new String(varLen));
 
+            fieldLength = Field.FIELD_LENGTH_TYPE_VAR3 + fieldLen;
+
+            fieldValue = new byte[fieldLength];
+
+            System.arraycopy(fieldData, srcPos, fieldValue, 0, fieldLength);
+
+            nextPos =  srcPos + fieldLength;
         }
         else
         {
@@ -464,5 +482,38 @@ public class Field {
         }
 
         return nextPos;
+    }
+
+    /**
+     *
+     * @param fieldNo
+     * @return
+     */
+    public Field getField(String fieldNo)
+    {
+        return fields.get(fieldNo);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Field getFieldByTag()
+    {
+        return fields.get(currentTag);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public byte[] getFieldData()
+    {
+        return null;
+    }
+
+    public void encode()
+    {
+
     }
 }

@@ -15,9 +15,9 @@ public class Field57_RP extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 72;
 
-        isSubField = true;
+        dataLen = 72;
+
+
     }
 }

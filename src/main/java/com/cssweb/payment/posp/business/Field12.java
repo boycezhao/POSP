@@ -11,7 +11,7 @@ public class Field12  extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 6;
+
+        dataLen = 6;
     }
 }

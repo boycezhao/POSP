@@ -18,7 +18,7 @@ public class Field48_AS extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 12;
+        fieldValueType = FIELD_VALUE_TYPE_TV;
+        dataLen = 12;
     }
 }

@@ -12,9 +12,9 @@ public class Field122_2 extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_VAR2;
+        fieldValueType = FIELD_VALUE_TYPE_LLV;
         maxFieldLength = 94;
 
-        isSubField = true;
+
     }
 }

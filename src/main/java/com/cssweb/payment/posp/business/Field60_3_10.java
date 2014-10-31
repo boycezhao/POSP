@@ -21,7 +21,7 @@ public class Field60_3_10 extends Field {
         fieldName = "卡产品";
         fieldNo = "60.3.10";
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 2;
+
+        dataLen = 2;
     }
 }

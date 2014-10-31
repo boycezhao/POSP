@@ -84,8 +84,8 @@ public class Field3  extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-        fieldLengthType = FIELD_LENGTH_TYPE_FIXED;
-        fieldLength = 6;
+
+        dataLen = 6;
 
         //fieldValue = new byte[fieldLength];
     }
