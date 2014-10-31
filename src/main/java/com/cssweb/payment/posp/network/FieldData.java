@@ -58,7 +58,6 @@ public class FieldData {
                 }
                 case 2:
                 {
-                    System.out.println("?????????????????????????");
                     Field2 field = new Field2();
                     srcPos = field.decode(fieldData, srcPos);
                     fieldMap.put(fieldNo, field);
@@ -72,6 +71,7 @@ public class FieldData {
                     break;
                 }
                 case 64: {
+                    System.out.println("域64有效==================================================");
                     break;
                 }
                 case 7: {
