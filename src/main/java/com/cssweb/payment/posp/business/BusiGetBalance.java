@@ -17,6 +17,7 @@ public class BusiGetBalance implements BusinessAction {
 
     @Override
     public CustomMessage process(CustomMessage request) {
+        logger.info("==处理余额查询==");
 
         FieldData reqFieldData = request.getFieldData();
         logger.info(reqFieldData.toString());

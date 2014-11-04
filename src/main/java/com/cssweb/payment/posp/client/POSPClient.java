@@ -146,4 +146,11 @@ public class POSPClient implements Runnable{
         handler.sendResponse(response);
     }
 
+
+
+    public void applyKey() {
+        TestApplyKey test = new TestApplyKey();
+        CustomMessage request = test.getRequest();
+        handler.sendRequest(request);
+    }
 }

@@ -50,6 +50,17 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<CustomMessag
         ctx.flush();
     }
 
+    public void sendRequest(CustomMessage customMessage)
+    {
+        ChannelFuture future = null;
+
+        future = ctx.write(customMessage);
+
+        future.addListener(numberSender);
+
+        ctx.flush();
+    }
+
 
     private final ChannelFutureListener numberSender = new ChannelFutureListener() {
         @Override

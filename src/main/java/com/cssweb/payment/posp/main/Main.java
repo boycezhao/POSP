@@ -37,8 +37,8 @@ public class Main {
 
 
 
-                if (cmd.equalsIgnoreCase("changekey")) {
-                    System.out.println("change key...");
+                if (cmd.equalsIgnoreCase("applykey")) {
+                    client.applyKey();
 
                 }
                 else if(cmd.equalsIgnoreCase("exit") || cmd.equalsIgnoreCase("quit"))
