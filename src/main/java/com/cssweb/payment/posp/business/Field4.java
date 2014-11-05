@@ -8,5 +8,8 @@ public class Field4 extends Field {
     {
         fieldName = "交易金额";
         fieldNo = "4";
+
+        fieldType = FIELD_TYPE_N;
+        dataLen = 12;
     }
 }

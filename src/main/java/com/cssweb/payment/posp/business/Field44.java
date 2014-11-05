@@ -9,6 +9,10 @@ public class Field44 extends Field {
     {
         fieldName = "附加响应数据";
         fieldNo = "44";
+
+        fieldType = FIELD_TYPE_ANS;
+        fieldValueType = FIELD_VALUE_TYPE_LLV;
+        maxFieldLength = 25;
     }
 
 }

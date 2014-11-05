@@ -186,6 +186,8 @@ public class CustomMessage {
         fieldData = new FieldData();
         byte[] data = new byte[msgHeader.getMsgContentSize() - MessageType.MSG_TYPE_SIZE - bitFieldMap.getBitFieldMapLen()];
         System.arraycopy(pkgContent, srcPos, data, 0, data.length);
+        logger.info("fieldata = " + new String(data) + ", len=" + data.length);
+
         fieldData.decode(array, data);
         logger.info("fieldData = " + new String(fieldData.getFieldData()));
 
