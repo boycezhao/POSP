@@ -384,7 +384,7 @@ public class Field {
             System.arraycopy(fieldData, srcPos, data, 0, dataLen);
             fieldLength = dataLen;
 
-
+            fieldValue = data;
 
             nextPos =  srcPos + fieldLength;
         }
@@ -401,6 +401,10 @@ public class Field {
             System.arraycopy(fieldData, srcPos+2, data, 0, dataLen);
 
             fieldLength = 2 + dataLen;
+            fieldValue = new byte[fieldLength];
+            System.arraycopy(varLen, 0, fieldValue, 0, 2);
+            System.arraycopy(data, 0, fieldValue, 2, dataLen);
+
             nextPos =  srcPos + fieldLength;
         }
         else if(fieldValueType == FIELD_VALUE_TYPE_LLLV)
@@ -416,6 +420,10 @@ public class Field {
             System.arraycopy(fieldData, srcPos+3, data, 0, dataLen);
 
             fieldLength = 3 + dataLen;
+            fieldValue = new byte[fieldLength];
+            System.arraycopy(varLen, 0, fieldValue, 0, 3);
+            System.arraycopy(data, 0, fieldValue, 3, dataLen);
+
             nextPos =  srcPos + fieldLength;
         }
         else if(fieldValueType == FIELD_VALUE_TYPE_TV)
@@ -432,6 +440,10 @@ public class Field {
             System.arraycopy(fieldData, srcPos+2, data, 0, dataLen);
 
             fieldLength = 2 + dataLen;
+            fieldValue = new byte[fieldLength];
+            System.arraycopy(varLen, 0, fieldValue, 0, 2);
+            System.arraycopy(data, 0, fieldValue, 2, dataLen);
+
             nextPos =  srcPos + fieldLength;
         }
         else if(fieldValueType == FIELD_VALUE_TYPE_TLLV)

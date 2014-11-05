@@ -33,6 +33,11 @@ public class Field121 extends Field {
         System.arraycopy(fieldData, pos+3, data, 0, dataLen);
 
         fieldLength = 3 + dataLen;
+        fieldValue = new byte[fieldLength];
+        System.arraycopy(varLen, 0, fieldValue, 0, 3);
+        System.arraycopy(data, 0, fieldValue, 3, dataLen);
+
+
         srcPos +=  fieldLength;
 
 

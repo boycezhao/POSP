@@ -244,7 +244,8 @@ public class FieldData {
         {
 
             byte[] fieldValue = field.getFieldValue();
-
+            if (fieldValue == null)
+                logger.error("编码失败" + field.getFieldNo());
             baos.write(fieldValue);
         }
 

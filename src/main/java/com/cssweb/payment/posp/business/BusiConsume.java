@@ -4,8 +4,10 @@ import com.cssweb.payment.posp.network.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by chenhf on 2014/10/15.
@@ -33,6 +35,8 @@ public class BusiConsume  implements BusinessAction {
             field3.setData("00X000");
             System.out.println(field3.toString());
             fields.add(field3);
+
+
 
         } catch (OverflowMaxLengthException e) {
             e.printStackTrace();
