@@ -1,7 +1,7 @@
 package com.cssweb.payment.posp.network;
 
 
-import com.cssweb.payment.posp.business.Field;
+import com.cssweb.payment.posp.common.Field;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

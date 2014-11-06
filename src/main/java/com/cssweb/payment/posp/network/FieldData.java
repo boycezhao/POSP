@@ -1,13 +1,13 @@
 package com.cssweb.payment.posp.network;
 
 
-import com.cssweb.payment.posp.business.*;
+import com.cssweb.payment.posp.common.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -22,7 +22,7 @@ public class FieldData {
     private List<Field> fields;
 
     // 存放解码后的域内容
-    private HashMap<Integer, Field> fieldMap = new HashMap<Integer, Field>();
+    private LinkedHashMap<Integer, Field> fieldMap = new LinkedHashMap<>();
 
 
     public FieldData()
@@ -226,14 +226,14 @@ public class FieldData {
                 }
                 case 42: {
                     Field42 field = new Field42();
-                    logger.info("42srcPos = " + srcPos);
+
                     srcPos = field.decode(fieldData, srcPos);
                     fieldMap.put(fieldNo, field);
                     break;
                 }
                 case 43: {
                     Field43 field = new Field43();
-                    logger.info("43srcPos = " + srcPos);
+
                     srcPos = field.decode(fieldData, srcPos);
                     fieldMap.put(fieldNo, field);
                     break;
@@ -442,8 +442,21 @@ public class FieldData {
     {
         return fieldMap.get(fieldNo);
     }
+
+    public LinkedHashMap<Integer, Field> getFieldMap() {
+        return fieldMap;
+    }
+
+    public void setFieldMap(LinkedHashMap<Integer, Field> fieldMap) {
+        this.fieldMap = fieldMap;
+    }
+
     public List<Field> getFields() {
         return fields;
+    }
+
+    public void setFields(List<Field> fields) {
+        this.fields = fields;
     }
 
     public int getFieldDataLen() {

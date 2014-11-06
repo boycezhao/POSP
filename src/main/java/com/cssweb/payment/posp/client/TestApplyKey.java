@@ -1,6 +1,6 @@
 package com.cssweb.payment.posp.client;
 
-import com.cssweb.payment.posp.business.*;
+import com.cssweb.payment.posp.common.*;
 import com.cssweb.payment.posp.network.*;
 
 import java.io.IOException;
