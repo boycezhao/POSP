@@ -13,18 +13,17 @@ import java.io.InputStreamReader;
  */
 public class Main {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // 业务处理线程池
         WorkerThreadPool.getInstance().init(10, 10000);
 
-        // 客户端线程
+        // 创建发送长连接
         POSPClient client = new POSPClient("127.0.0.1", 2013);
         Thread threadClient = new Thread(client);
         threadClient.start();
 
 
-        // 服务线程
+        // 创建接收长连接
         POSPServer server = new POSPServer(3500, client);
         Thread threadServer = new Thread(server);
         threadServer.start();
@@ -32,17 +31,14 @@ public class Main {
         // 主线程
         try {
             BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-            while(true) {
+            while (true) {
                 String cmd = console.readLine();
-
 
 
                 if (cmd.equalsIgnoreCase("applykey")) {
                     client.applyKey();
 
-                }
-                else if(cmd.equalsIgnoreCase("exit") || cmd.equalsIgnoreCase("quit"))
-                {
+                } else if (cmd.equalsIgnoreCase("exit") || cmd.equalsIgnoreCase("quit")) {
                     client.close();
 
                     server.close();

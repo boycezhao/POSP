@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
+
 public class POSPServer implements Runnable{
     private static final Logger logger = LogManager.getLogger(POSPServer.class.getName());
 
@@ -35,11 +36,18 @@ public class POSPServer implements Runnable{
         try {
             ServerBootstrap b = new ServerBootstrap();
 
-            b.group(bossGroup, workerGroup)
-             .channel(NioServerSocketChannel.class)
-             .option(ChannelOption.SO_BACKLOG, 8192)
-             .handler(new LoggingHandler(LogLevel.INFO))
-             .childHandler(new NettyServerInitializer(client));
+            /*
+            保持LINGER关闭
+            必须设置SO_REUSEADDR
+            必须设置SO_KEEPALIVE
+             */
+            ServerBootstrap serverBootstrap = b.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .option(ChannelOption.SO_BACKLOG, 8192)
+                    .option(ChannelOption.SO_REUSEADDR, true)
+                    .option(ChannelOption.SO_KEEPALIVE, true)
+                    .handler(new LoggingHandler(LogLevel.INFO))
+                    .childHandler(new NettyServerInitializer(client));
 
             b.bind(port).sync().channel().closeFuture().sync();
 
