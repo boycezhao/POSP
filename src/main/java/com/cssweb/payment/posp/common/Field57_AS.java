@@ -12,10 +12,7 @@ public class Field57_AS extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-
+        fieldValueType = FIELD_VALUE_TYPE_TV;
         dataLen = 12;
-
-
     }
-
 }

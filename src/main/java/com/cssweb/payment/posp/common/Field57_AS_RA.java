@@ -11,10 +11,7 @@ public class Field57_AS_RA extends Field {
 
         fieldType = FIELD_TYPE_N;
 
-
+        fieldValueType = FIELD_VALUE_TYPE_TLLLV;
         dataLen = 12;
-
-
-
     }
 }
