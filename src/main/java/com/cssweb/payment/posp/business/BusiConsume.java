@@ -96,6 +96,9 @@ public class BusiConsume  implements BusinessAction {
 
             //授权标识应答码
             Field38 f38 = new Field38();
+            f38.setData("000000".getBytes());
+            logger.info(f38.toString());
+            fields.add(f38);
 
             //应答码
             Field39 field39 = new Field39();
@@ -114,6 +117,9 @@ public class BusiConsume  implements BusinessAction {
 
             //附加响应数据
             Field44 f44 = new Field44();
+            f44.setData("00");
+            logger.info(f44.toString());
+            fields.add(f44);
 
             Field49 f49 = (Field49) reqFieldData.getField(49);
             logger.info(f49.toString());

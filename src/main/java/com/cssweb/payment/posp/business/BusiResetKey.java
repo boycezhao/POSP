@@ -59,9 +59,9 @@ public class BusiResetKey implements BusinessAction {
             logger.info(f70.toString());
             fields.add(f70);
 
-            Field96 f96 = (Field96) reqFieldData.getField(96);
-            logger.info(f96.toString());
-            fields.add(f96);
+            //Field96 f96 = (Field96) reqFieldData.getField(96);
+            //logger.info(f96.toString());
+            //fields.add(f96);
 
 
             Field100 f100 = (Field100) reqFieldData.getField(100);
