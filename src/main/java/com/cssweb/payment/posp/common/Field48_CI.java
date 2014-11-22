@@ -13,8 +13,9 @@ public class Field48_CI extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-
-        dataLen = 2+20+2+20+14+42;
+        fieldValueType = FIELD_VALUE_TYPE_TV;
+        tag = "CI";
+        dataLen = 20+2+20+14+42;
     }
 
 }

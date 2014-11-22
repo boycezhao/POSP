@@ -15,7 +15,8 @@ public class Field48_IP extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-        fieldValueType = FIELD_VALUE_TYPE_LLLV;
-        maxFieldLength = 255;
+        fieldValueType = FIELD_VALUE_TYPE_TV;
+        tag = "IP";
+        dataLen = 2 + 30 + 30;
     }
 }

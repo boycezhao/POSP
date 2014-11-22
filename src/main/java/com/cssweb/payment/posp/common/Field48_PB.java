@@ -12,10 +12,12 @@ public class Field48_PB extends Field {
         fieldName = "基于PBOC电子钱包/存折标准和基于PBOC借贷记标准的电子现金应用的非指定账户圈存信息";
         fieldNo = "48.PB";
 
-        fieldType = FIELD_TYPE_BINARY_BIT;
+        fieldType = FIELD_TYPE_N;
 
+        fieldValueType = FIELD_VALUE_TYPE_TV;
+        tag = "PB";
+        dataLen = 3 + 1;
 
-        dataLen = 4080;
 
     }
 }

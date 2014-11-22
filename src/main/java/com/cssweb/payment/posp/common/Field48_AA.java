@@ -13,6 +13,7 @@ public class Field48_AA extends Field {
         fieldType = FIELD_TYPE_ANSB;
 
         fieldValueType = FIELD_VALUE_TYPE_TLLLV;
+        tag = "AA";
         maxFieldLength = 510;
     }
 }

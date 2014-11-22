@@ -12,6 +12,7 @@ public class Field57_AS extends Field {
 
         fieldType = FIELD_TYPE_N;
 
+        // 3字节长度 + 标志AS + 标志比如AB + 3字节长度 + 数据
         fieldValueType = FIELD_VALUE_TYPE_TV;
         dataLen = 12;
     }

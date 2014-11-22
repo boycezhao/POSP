@@ -10,10 +10,13 @@ public class Field48_NK extends Field {
         fieldName = "新密钥";
         fieldNo = "48.NK";
 
+
+
         fieldType = FIELD_TYPE_BINARY_BIT;
 
-
-        dataLen = 4080;
+        fieldValueType = FIELD_VALUE_TYPE_TV;
+        tag = "NK";
+        dataLen = 4080/8; // 510字节
     }
 
 }
