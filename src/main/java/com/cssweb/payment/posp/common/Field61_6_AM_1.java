@@ -3,7 +3,7 @@ package com.cssweb.payment.posp.common;
 /**
  * Created by chenhf on 2014/10/24.
  */
-public class Field61_6_AM extends Field {
+public class Field61_6_AM_1 extends Field {
 
     private byte password;//密码验证
     private byte cardExpire;//卡有效期验证
@@ -17,7 +17,7 @@ public class Field61_6_AM extends Field {
 
     private String data; // 业务自定义数据ans…153。根据受理方的各业务需求自行填写
 
-    public Field61_6_AM()
+    public Field61_6_AM_1()
     {
         fieldName = "受理方要求发卡方校验的方式";
         fieldNo = "61.6.AM";

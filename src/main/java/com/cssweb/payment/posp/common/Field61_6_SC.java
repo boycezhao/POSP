@@ -24,8 +24,8 @@ public class Field61_6_SC extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-
-        dataLen = 60;
+        fieldValueType = FIELD_VALUE_TYPE_TV;
+        dataLen = 6 + 19 + 1 + 8 + 1 + 1 + 192/8 + 20 + 8 + 40;
 
 
     }

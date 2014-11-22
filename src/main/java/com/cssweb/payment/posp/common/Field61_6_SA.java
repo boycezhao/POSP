@@ -23,8 +23,8 @@ public class Field61_6_SA extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-
-        dataLen = 60;
+        fieldValueType = FIELD_VALUE_TYPE_TV;
+        dataLen = 6 + 19 + 1 + 8 + 1 + 20;
 
 
     }

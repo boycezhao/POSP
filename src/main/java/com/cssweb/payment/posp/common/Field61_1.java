@@ -21,7 +21,7 @@ public class Field61_1 extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-
+        fieldValueType = FIELD_VALUE_TYPE_DEFAULT;
         dataLen = 22;
 
 

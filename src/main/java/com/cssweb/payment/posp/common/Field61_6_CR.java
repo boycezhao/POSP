@@ -19,7 +19,7 @@ public class Field61_6_CR extends Field {
 
         fieldType = FIELD_TYPE_ANS;
 
-
+        fieldValueType = FIELD_VALUE_TYPE_TV;
         dataLen = 1;
 
 
