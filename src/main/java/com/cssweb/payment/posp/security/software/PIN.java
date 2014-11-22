@@ -69,7 +69,7 @@ public class PIN {
      * @param pan
      * @return
      */
-    public static byte[] encryptPIN(byte[] PIK, String pin, String pan)
+    public static byte[] calcPIN(byte[] PIK, String pin, String pan)
     {
         byte[] pinBlock = getPINBlock(pin);
 
@@ -124,7 +124,7 @@ public class PIN {
         String pin = "123456";
         String pan = "123456789012345678";
 
-        byte[] result = PIN.encryptPIN(PIK.getBytes(), pin, pan);
+        byte[] result = PIN.calcPIN(PIK.getBytes(), pin, pan);
         System.out.println("加密pin=" + Hex.encodeHexString(result).toUpperCase());
     }
 }
